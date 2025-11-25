@@ -15,11 +15,11 @@ Todo
 Compress and finetune
 ```shell
 sw-train \
-    --source_path /mnt/storage/users/szxie_data/nerf_data/360_v2/bicycle \
-    --output_dir outputs/mesongs/ \
+    --source_path /data/MipNeRF-360/bicycle \
+    --output_dir /output/mesons/ \
     --model mesongs \
     --optim mesongs \
-    --init_checkpoint /mnt/storage/users/szxie_data/MesonGS/outputs/360_v2/bicycle/baseline/3dgs/point_cloud/iteration_30000/point_cloud.ply
+    --init_checkpoint /output/gs/point_cloud/iteration_30000/point_cloud.ply
 ```
 
 Evaluate
@@ -30,5 +30,5 @@ sw-eval \
     --model mesongs \
     --optim mesongs \
     --eval_mode ENCODE_DECODE \
-    --checkpoint /output/mesongs//checkpoints/ckpt5000.pth
+    --checkpoint /output/mesongs/checkpoints/ckpt5000.pth
 ```
