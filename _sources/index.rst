@@ -20,7 +20,7 @@ Key features of the project include:
 
 Latest News
 ~~~~~~~~~~~~~~
-- placeholder
+- 2025/11/25: Release first version.
 
 .. toctree::
    :hidden:

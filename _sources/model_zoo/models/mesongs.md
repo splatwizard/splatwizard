@@ -7,10 +7,7 @@ MesonGS: Post-training Compression of 3D Gaussians via Efficient Attribute Trans
 MesonGS requires a pre-trained 3DGS model as `--init_checkpoint`.
 
 :::
-Install
-```shell
-Todo
-```
+
 
 Compress and finetune
 ```shell
