@@ -322,6 +322,14 @@ document.write(`
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>splatwizard
 </pre></div>
 </div>
+<p>Since the installation process requires significant time to precompile all components, you can monitor the installation progress using the <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> option.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>splatwizard<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>Additionally, pip compiles components in an isolated environment by default. You can use <code class="docutils literal notranslate"><span class="pre">--no-build-isolation</span></code> to perform the compilation directly in the current environment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>splatwizard<span class="w"> </span>--verbose<span class="w"> </span>--no-build-isolation
+</pre></div>
+</div>
 </section>
 
 
