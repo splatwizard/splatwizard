@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Define a GS Model &#8212; Splatwizard  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=2b91c5f0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/concept';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Use Mixins" href="model_mixin.html" />
+    <link rel="prev" title="FAQ" href="../getting_start/faq.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Splatwizard  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Start</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_start/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_start/first_model.html">Train Your First 3DGS model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_start/faq.html">FAQ</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Define a GS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_mixin.html">Use Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="register_model.html">Use new model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_config.html">Common Configuration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Model Zoo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../model_zoo/model_list.html">Model List</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/gs.html">3D Gaussian Splatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/speedy.html">3D Gaussian Splatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/ttf.html">TTF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/lightgaussian.html">LightGaussian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/pup.html">PUP-3DGS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/c3dgs.html">Compressed 3DGS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/compactgs.html">Compact 3DGS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/controlgs.html">ControlGS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/hac.html">HAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/cat3dgs.html">CAT-3DGS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/mesongs.html">MesonGS</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/config.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/rasterizer.html">Rasterizer</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tutorial/concept.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Define a GS Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-gs-model-class-and-configurations">Step 1: Define GS Model Class and Configurations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-setup-optimizer">Step 2: Setup Optimizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-define-dencification-and-prune-method">Step 3: Define Dencification and Prune Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-define-render-function-and-loss-function">Step 4: Define Render Function and Loss Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-register-tasks">Step 5: Register Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="define-a-gs-model">
+<h1>Define a GS Model<a class="headerlink" href="#define-a-gs-model" title="Permalink to this heading">#</a></h1>
+<p>To facilitate researchers’ usage and reduce cognitive load,
+we adopted a design philosophy in the model architecture similar to the original 3DGS,
+where a single Gaussian Splatting class simultaneously manages trainable parameters, optimizers, densification operations, and other components.
+This design simplifies the integration process with existing research.
+However, to enhance implementation flexibility, we introduced several modifications.
+Below, we will reimplement the original 3DGS model step-by-step as an example to explain the key concept in our framework.</p>
+<div class="myclass1 myclass2 admonition tip" id="a-tip-reference">
+<p class="admonition-title">Tip</p>
+<p>The code in the section is simplified for illustration purpose only and is not executable.
+Full implementation of 3DGS has been included in Model Zoo.</p>
+</div>
+<section id="step-1-define-gs-model-class-and-configurations">
+<h2>Step 1: Define GS Model Class and Configurations<a class="headerlink" href="#step-1-define-gs-model-class-and-configurations" title="Permalink to this heading">#</a></h2>
+<p>Similar to original 3DGS, all trainable parameters are defined in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.modules.gaussian_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseGaussianModel</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">class</span><span class="w"> </span><span class="nc">GSModel</span><span class="p">(</span><span class="n">BaseGaussianModel</span><span class="p">):</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_params</span><span class="p">:</span> <span class="n">GSModelParams</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>        <span class="bp">self</span><span class="o">.</span><span class="n">_xyz</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="linenos">11</span>        <span class="o">...</span>  <span class="c1"># define other trainable parameters</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>        <span class="bp">self</span><span class="o">.</span><span class="n">setup_functions</span><span class="p">()</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">def</span><span class="w"> </span><span class="nf">setup_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">16</span>        <span class="o">...</span>  <span class="c1"># setup operations</span>
+<span class="linenos">17</span>
+</pre></div>
+</div>
+<p>The parameters of the model and the training parameters also need to be properly defined.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelParams</span><span class="p">,</span> <span class="n">OptimizationParams</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GSModelParams</span><span class="p">(</span><span class="n">ModelParams</span><span class="p">):</span>
+    <span class="o">...</span>
+
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GSOptimizationParams</span><span class="p">(</span><span class="n">OptimizationParams</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-setup-optimizer">
+<h2>Step 2: Setup Optimizer<a class="headerlink" href="#step-2-setup-optimizer" title="Permalink to this heading">#</a></h2>
+<p>The process of defining the optimizer also remains consistent with the original implementation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.modules.gaussian_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseGaussianModel</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimizationParams</span>
+<span class="linenos"> 3</span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="k">class</span><span class="w"> </span><span class="nc">GSModel</span><span class="p">(</span><span class="n">BaseGaussianModel</span><span class="p">):</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 8</span>        <span class="o">...</span>  <span class="c1"># init operations</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="k">def</span><span class="w"> </span><span class="nf">setup_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">11</span>        <span class="o">...</span>  <span class="c1"># setup operations</span>
+<span class="hll"><span class="linenos">12</span>
+</span><span class="hll"><span class="linenos">13</span>    <span class="k">def</span><span class="w"> </span><span class="nf">training_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">OptimizationParams</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">14</span>        <span class="o">...</span>  <span class="c1"># define optimizer</span>
+</span><span class="hll"><span class="linenos">15</span>
+</span><span class="hll"><span class="linenos">16</span>    <span class="k">def</span><span class="w"> </span><span class="nf">update_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span class="linenos">17</span>        <span class="o">...</span>  <span class="c1"># define lr update operation </span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-define-dencification-and-prune-method">
+<h2>Step 3: Define Dencification and Prune Method<a class="headerlink" href="#step-3-define-dencification-and-prune-method" title="Permalink to this heading">#</a></h2>
+<p>Densification and pruning remain consistent with the original version.
+There is a little difference that we use a special dataclass <code class="docutils literal notranslate"><span class="pre">RenderResult</span></code> as the input of statistic method.
+By adopting a dedicated dataclass for intermediate data transfer,
+we avoid functions with excessive parameters, minimizing potential coding mistakes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.modules.gaussian_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseGaussianModel</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimizationParams</span>
+<span class="hll"><span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.modules.dataclass</span><span class="w"> </span><span class="kn">import</span> <span class="n">RenderResult</span>
+</span><span class="linenos"> 4</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">class</span><span class="w"> </span><span class="nc">GSModel</span><span class="p">(</span><span class="n">BaseGaussianModel</span><span class="p">):</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos"> 9</span>        <span class="o">...</span>  <span class="c1"># init operations</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span>    <span class="k">def</span><span class="w"> </span><span class="nf">setup_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">12</span>        <span class="o">...</span>  <span class="c1"># setup operations</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span>    <span class="k">def</span><span class="w"> </span><span class="nf">training_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">OptimizationParams</span><span class="p">):</span>
+<span class="linenos">15</span>        <span class="o">...</span>  <span class="c1"># define optimzer</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span>    <span class="k">def</span><span class="w"> </span><span class="nf">update_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="linenos">18</span>        <span class="o">...</span>  <span class="c1"># define lr update operation   </span>
+<span class="hll"><span class="linenos">19</span>
+</span><span class="hll"><span class="linenos">20</span>    <span class="k">def</span><span class="w"> </span><span class="nf">replace_tensor_to_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">21</span>        <span class="o">...</span>
+</span><span class="hll"><span class="linenos">22</span>
+</span><span class="hll"><span class="linenos">23</span>    <span class="k">def</span><span class="w"> </span><span class="nf">_prune_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">24</span>        <span class="o">...</span>
+</span><span class="hll"><span class="linenos">25</span>
+</span><span class="hll"><span class="linenos">26</span>    <span class="k">def</span><span class="w"> </span><span class="nf">prune_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">27</span>        <span class="o">...</span>
+</span><span class="hll"><span class="linenos">28</span>
+</span><span class="hll"><span class="linenos">29</span>    <span class="k">def</span><span class="w"> </span><span class="nf">cat_tensors_to_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensors_dict</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">30</span>        <span class="o">...</span>
+</span><span class="hll"><span class="linenos">31</span>
+</span><span class="hll"><span class="linenos">32</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densification_postfix</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">33</span>            <span class="bp">self</span><span class="p">,</span> <span class="n">new_xyz</span><span class="p">,</span> <span class="n">new_features_dc</span><span class="p">,</span> <span class="n">new_features_rest</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">34</span>            <span class="n">new_opacities</span><span class="p">,</span> <span class="n">new_scaling</span><span class="p">,</span> <span class="n">new_rotation</span>
+</span><span class="hll"><span class="linenos">35</span>    <span class="p">):</span>
+</span><span class="hll"><span class="linenos">36</span>        <span class="o">...</span>
+</span><span class="hll"><span class="linenos">37</span>
+</span><span class="hll"><span class="linenos">38</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">grad_threshold</span><span class="p">,</span> <span class="n">scene_extent</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">39</span>        <span class="o">...</span>
+</span><span class="hll"><span class="linenos">40</span>
+</span><span class="hll"><span class="linenos">41</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">grad_threshold</span><span class="p">,</span> <span class="n">scene_extent</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">42</span>        <span class="o">...</span>
+</span><span class="hll"><span class="linenos">43</span>
+</span><span class="hll"><span class="linenos">44</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_grad</span><span class="p">,</span> <span class="n">min_opacity</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">max_screen_size</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">45</span>        <span class="o">...</span>
+</span><span class="hll"><span class="linenos">46</span>
+</span><span class="hll"><span class="linenos">47</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_densification_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">render_result</span><span class="p">:</span> <span class="n">RenderResult</span><span class="p">):</span>
+</span><span class="linenos">48</span>        <span class="o">...</span> 
+</pre></div>
+</div>
+</section>
+<section id="step-4-define-render-function-and-loss-function">
+<h2>Step 4: Define Render Function and Loss Function<a class="headerlink" href="#step-4-define-render-function-and-loss-function" title="Permalink to this heading">#</a></h2>
+<p>Unlike the original implementation, we integrate both the <strong>rendering function</strong> and the <strong>loss function</strong> into the model itself.
+This design aims to standardize the training pipeline across different models as much as possible,
+thereby simplifying the implementation of the evaluation module.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="hll"><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.modules.gaussian_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseGaussianModel</span>
+<span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimizationParams</span>
+<span class="hll"><span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.modules.dataclass</span><span class="w"> </span><span class="kn">import</span> <span class="n">RenderResult</span><span class="p">,</span> <span class="n">LossPack</span>
+</span><span class="linenos"> 5</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="k">class</span><span class="w"> </span><span class="nc">GSModel</span><span class="p">(</span><span class="n">BaseGaussianModel</span><span class="p">):</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">10</span>        <span class="o">...</span>  <span class="c1"># init operations</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span>    <span class="k">def</span><span class="w"> </span><span class="nf">setup_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">13</span>        <span class="o">...</span>  <span class="c1"># setup operations</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>    <span class="k">def</span><span class="w"> </span><span class="nf">training_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">OptimizationParams</span><span class="p">):</span>
+<span class="linenos">16</span>        <span class="o">...</span>  <span class="c1"># define optimizer</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>    <span class="k">def</span><span class="w"> </span><span class="nf">update_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="linenos">19</span>        <span class="o">...</span>  <span class="c1"># define lr update operation</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span>    <span class="k">def</span><span class="w"> </span><span class="nf">replace_tensor_to_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="linenos">22</span>        <span class="o">...</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span>    <span class="k">def</span><span class="w"> </span><span class="nf">_prune_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="linenos">25</span>        <span class="o">...</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>    <span class="k">def</span><span class="w"> </span><span class="nf">prune_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="linenos">28</span>        <span class="o">...</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>    <span class="k">def</span><span class="w"> </span><span class="nf">cat_tensors_to_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensors_dict</span><span class="p">):</span>
+<span class="linenos">31</span>        <span class="o">...</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densification_postfix</span><span class="p">(</span>
+<span class="linenos">34</span>            <span class="bp">self</span><span class="p">,</span> <span class="n">new_xyz</span><span class="p">,</span> <span class="n">new_features_dc</span><span class="p">,</span> <span class="n">new_features_rest</span><span class="p">,</span>
+<span class="linenos">35</span>            <span class="n">new_opacities</span><span class="p">,</span> <span class="n">new_scaling</span><span class="p">,</span> <span class="n">new_rotation</span>
+<span class="linenos">36</span>    <span class="p">):</span>
+<span class="linenos">37</span>        <span class="o">...</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">grad_threshold</span><span class="p">,</span> <span class="n">scene_extent</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="linenos">40</span>        <span class="o">...</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">grad_threshold</span><span class="p">,</span> <span class="n">scene_extent</span><span class="p">):</span>
+<span class="linenos">43</span>        <span class="o">...</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_grad</span><span class="p">,</span> <span class="n">min_opacity</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">max_screen_size</span><span class="p">):</span>
+<span class="linenos">46</span>        <span class="o">...</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_densification_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">render_result</span><span class="p">:</span> <span class="n">RenderResult</span><span class="p">):</span>
+<span class="linenos">49</span>        <span class="o">...</span>
+<span class="linenos">50</span>
+<span class="hll"><span class="linenos">51</span>    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewpoint_camera</span><span class="p">,</span> <span class="n">bg_color</span><span class="p">,</span> <span class="n">pipe</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scaling_modifier</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">override_color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">52</span>        <span class="o">...</span>  <span class="c1"># render function</span>
+</span><span class="hll"><span class="linenos">53</span>
+</span><span class="hll"><span class="linenos">54</span>    <span class="k">def</span><span class="w"> </span><span class="nf">loss_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewpoint_cam</span><span class="p">,</span> <span class="n">render_result</span><span class="p">:</span> <span class="n">RenderResult</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">LossPack</span><span class="p">):</span>
+</span><span class="hll"><span class="linenos">55</span>        <span class="o">...</span>  <span class="c1"># loss function</span>
+</span></pre></div>
+</div>
+</section>
+<section id="step-5-register-tasks">
+<h2>Step 5: Register Tasks<a class="headerlink" href="#step-5-register-tasks" title="Permalink to this heading">#</a></h2>
+<p>From this point onward, our design philosophy diverges significantly from the original implementation.
+3DGS requires execution of diverse operations at different training stages,
+such as collecting statistics, updating learning rates, densification, etc.
+For compression-related models, these operations become even more varied with increasingly complex scheduling requirements.
+Manually managing these tasks within training scripts proves both cumbersome and error-prone.</p>
+<p>To address this, we designed a dedicated <code class="docutils literal notranslate"><span class="pre">Scheduler</span></code> that consolidates all task operations within a unified framework.
+In practical implementation, GS model are required to define two core methods:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">register_pre_task</span></code>: Registers operations executed before rendering (e.g., learning rate updates)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">register_post_task</span></code>: Registers operations executed after rendering (e.g., densification)</p></li>
+</ol>
+<p>This architecture organizes the originally dispersed operations.
+Taking learning rate adjustment as an example, we register it in <code class="docutils literal notranslate"><span class="pre">register_pre_task</span></code>, while operations like densification are handled through <code class="docutils literal notranslate"><span class="pre">register_post_task</span></code>,
+establishing clear execution boundaries and logical flow.</p>
+<p>The scheduler ensures operations execute in their designated phases while maintaining compatibility with existing optimization steps.
+This proves particularly valuable when extending the framework to support novel compression techniques requiring additional processing stages.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="linenos"> 2</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.modules.gaussian_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseGaussianModel</span>
+<span class="hll"><span class="linenos"> 3</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptimizationParams</span><span class="p">,</span> <span class="n">PipelineParams</span>
+</span><span class="linenos"> 4</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.modules.dataclass</span><span class="w"> </span><span class="kn">import</span> <span class="n">RenderResult</span><span class="p">,</span> <span class="n">LossPack</span>
+<span class="hll"><span class="linenos"> 5</span><span class="kn">from</span><span class="w"> </span><span class="nn">splatwizard.scheduler</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scheduler</span><span class="p">,</span> <span class="n">task</span>
+</span><span class="linenos"> 6</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="k">class</span><span class="w"> </span><span class="nc">GSModel</span><span class="p">(</span><span class="n">BaseGaussianModel</span><span class="p">):</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">11</span>        <span class="o">...</span>  <span class="c1"># init operations</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span>    <span class="k">def</span><span class="w"> </span><span class="nf">setup_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="linenos">14</span>        <span class="o">...</span>  <span class="c1"># setup operations</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span>    <span class="k">def</span><span class="w"> </span><span class="nf">training_setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">OptimizationParams</span><span class="p">):</span>
+<span class="linenos">17</span>        <span class="o">...</span>  <span class="c1"># define optimizer</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span>    <span class="nd">@task</span>
+<span class="hll"><span class="linenos">20</span>    <span class="k">def</span><span class="w"> </span><span class="nf">update_learning_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span><span class="linenos">21</span>        <span class="o">...</span>  <span class="c1"># define lr update operation</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span>    <span class="k">def</span><span class="w"> </span><span class="nf">register_pre_task</span><span class="p">(</span>
+<span class="hll"><span class="linenos">24</span>            <span class="bp">self</span><span class="p">,</span> <span class="n">scheduler</span><span class="p">:</span> <span class="n">Scheduler</span><span class="p">,</span> <span class="n">ppl</span><span class="p">:</span> <span class="n">PipelineParams</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">OptimizationParams</span>
+</span><span class="hll"><span class="linenos">25</span>    <span class="p">):</span>
+</span><span class="hll"><span class="linenos">26</span>        <span class="n">scheduler</span><span class="o">.</span><span class="n">register_task</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">27</span>            <span class="nb">range</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">iterations</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">28</span>            <span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">update_learning_rate</span>
+</span><span class="hll"><span class="linenos">29</span>        <span class="p">)</span>
+</span><span class="hll"><span class="linenos">30</span>        <span class="o">...</span>  <span class="c1"># other tasks</span>
+</span><span class="hll"><span class="linenos">31</span>
+</span><span class="hll"><span class="linenos">32</span>    <span class="k">def</span><span class="w"> </span><span class="nf">register_post_task</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">33</span>            <span class="bp">self</span><span class="p">,</span> <span class="n">scheduler</span><span class="p">:</span> <span class="n">Scheduler</span><span class="p">,</span> <span class="n">ppl</span><span class="p">:</span> <span class="n">PipelineParams</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">OptimizationParams</span>
+</span><span class="hll"><span class="linenos">34</span>    <span class="p">):</span>
+</span><span class="hll"><span class="linenos">35</span>        <span class="n">scheduler</span><span class="o">.</span><span class="n">register_task</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">36</span>            <span class="nb">range</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">densify_until_iter</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">37</span>            <span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">add_densification_stats</span><span class="p">)</span>
+</span><span class="hll"><span class="linenos">38</span>
+</span><span class="hll"><span class="linenos">39</span>        <span class="n">scheduler</span><span class="o">.</span><span class="n">register_task</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">40</span>            <span class="nb">range</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">densify_from_iter</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">densify_until_iter</span><span class="p">,</span> <span class="n">opt</span><span class="o">.</span><span class="n">densification_interval</span><span class="p">),</span>
+</span><span class="hll"><span class="linenos">41</span>            <span class="n">task</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">densify_and_prune_task</span>
+</span><span class="hll"><span class="linenos">42</span>        <span class="p">)</span>
+</span><span class="hll"><span class="linenos">43</span>        <span class="o">...</span>  <span class="c1"># other tasks</span>
+</span><span class="hll"><span class="linenos">44</span>
+</span><span class="hll"><span class="linenos">45</span>    <span class="k">def</span><span class="w"> </span><span class="nf">replace_tensor_to_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span><span class="linenos">46</span>        <span class="o">...</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span>    <span class="k">def</span><span class="w"> </span><span class="nf">_prune_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="linenos">49</span>        <span class="o">...</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span>    <span class="k">def</span><span class="w"> </span><span class="nf">prune_points</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+<span class="linenos">52</span>        <span class="o">...</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span>    <span class="k">def</span><span class="w"> </span><span class="nf">cat_tensors_to_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tensors_dict</span><span class="p">):</span>
+<span class="linenos">55</span>        <span class="o">...</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densification_postfix</span><span class="p">(</span>
+<span class="linenos">58</span>            <span class="bp">self</span><span class="p">,</span> <span class="n">new_xyz</span><span class="p">,</span> <span class="n">new_features_dc</span><span class="p">,</span> <span class="n">new_features_rest</span><span class="p">,</span>
+<span class="linenos">59</span>            <span class="n">new_opacities</span><span class="p">,</span> <span class="n">new_scaling</span><span class="p">,</span> <span class="n">new_rotation</span>
+<span class="linenos">60</span>    <span class="p">):</span>
+<span class="linenos">61</span>        <span class="o">...</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">grad_threshold</span><span class="p">,</span> <span class="n">scene_extent</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="linenos">64</span>        <span class="o">...</span>
+<span class="linenos">65</span>
+<span class="linenos">66</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_clone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grads</span><span class="p">,</span> <span class="n">grad_threshold</span><span class="p">,</span> <span class="n">scene_extent</span><span class="p">):</span>
+<span class="linenos">67</span>        <span class="o">...</span>
+<span class="linenos">68</span>
+<span class="linenos">69</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_prune</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_grad</span><span class="p">,</span> <span class="n">min_opacity</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">max_screen_size</span><span class="p">):</span>
+<span class="linenos">70</span>        <span class="o">...</span>
+<span class="linenos">71</span>
+<span class="linenos">72</span>    <span class="nd">@task</span>
+<span class="linenos">73</span>    <span class="k">def</span><span class="w"> </span><span class="nf">add_densification_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">render_result</span><span class="p">:</span> <span class="n">RenderResult</span><span class="p">):</span>
+<span class="hll"><span class="linenos">74</span>        <span class="o">...</span>
+</span><span class="linenos">75</span>
+<span class="linenos">76</span>    <span class="nd">@task</span>
+<span class="linenos">77</span>    <span class="k">def</span><span class="w"> </span><span class="nf">densify_and_prune_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opt</span><span class="p">:</span> <span class="n">OptimizationParams</span><span class="p">,</span> <span class="n">step</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="hll"><span class="linenos">78</span>        <span class="n">size_threshold</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">if</span> <span class="n">step</span> <span class="o">&gt;</span> <span class="n">opt</span><span class="o">.</span><span class="n">opacity_reset_interval</span> <span class="k">else</span> <span class="kc">None</span>
+</span><span class="hll"><span class="linenos">79</span>        <span class="bp">self</span><span class="o">.</span><span class="n">densify_and_prune</span><span class="p">(</span>
+</span><span class="hll"><span class="linenos">80</span>            <span class="n">opt</span><span class="o">.</span><span class="n">densify_grad_threshold</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span>
+</span><span class="hll"><span class="linenos">81</span>            <span class="bp">self</span><span class="o">.</span><span class="n">spatial_lr_scale</span><span class="p">,</span> <span class="n">size_threshold</span>
+</span><span class="hll"><span class="linenos">82</span>        <span class="p">)</span>
+</span><span class="hll"><span class="linenos">83</span>
+</span><span class="hll"><span class="linenos">84</span>    <span class="k">def</span><span class="w"> </span><span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewpoint_camera</span><span class="p">,</span> <span class="n">bg_color</span><span class="p">,</span> <span class="n">pipe</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scaling_modifier</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">override_color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span class="linenos">85</span>        <span class="o">...</span>  <span class="c1"># render function</span>
+<span class="linenos">86</span>
+<span class="linenos">87</span>    <span class="k">def</span><span class="w"> </span><span class="nf">loss_func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">viewpoint_cam</span><span class="p">,</span> <span class="n">render_result</span><span class="p">:</span> <span class="n">RenderResult</span><span class="p">,</span> <span class="n">opt</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">LossPack</span><span class="p">):</span>
+<span class="linenos">88</span>        <span class="o">...</span>  <span class="c1"># loss function</span>
+</pre></div>
+</div>
+<p>The scheduler provides task functions with three fixed parameters:
+<strong>render results</strong>, <strong>optimization parameters</strong>, and the <strong>current training step</strong>.
+To simplify task function development, we introduce the <strong>&#64;task</strong> decorator,
+which automatically supplies appropriate arguments during scheduling based on the function’s parameter type annotations.</p>
+<div class="myclass1 myclass2 admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Task function parameters must be exclusively selected from:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RenderResult</span></code> or its derivative class</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OptimizationParams</span></code> or its derivative class (here is <code class="docutils literal notranslate"><span class="pre">GSOptimizationParams</span></code> defined in Step 1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code> (representing the training step count)</p></li>
+</ul>
+</div>
+<p>See Line 20, Line 74 and Line 78 for actual use cases.</p>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>Congratulations! You have finished your first GS model in SplatWizard. Next, we will simplify the process by using more tricky way</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../getting_start/faq.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">FAQ</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="model_mixin.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Use Mixins</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-define-gs-model-class-and-configurations">Step 1: Define GS Model Class and Configurations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-setup-optimizer">Step 2: Setup Optimizer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-define-dencification-and-prune-method">Step 3: Define Dencification and Prune Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-define-render-function-and-loss-function">Step 4: Define Render Function and Loss Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-register-tasks">Step 5: Register Tasks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Splatwizard dev team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Splatwizard dev team.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
