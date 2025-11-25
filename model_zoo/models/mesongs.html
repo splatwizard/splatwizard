@@ -329,11 +329,11 @@ document.write(`
 </div>
 <p>Compress and finetune</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sw-train<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--source_path<span class="w"> </span>/mnt/storage/users/szxie_data/nerf_data/360_v2/bicycle<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--output_dir<span class="w"> </span>outputs/mesongs/<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--source_path<span class="w"> </span>/data/MipNeRF-360/bicycle<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output_dir<span class="w"> </span>/output/mesons/<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--model<span class="w"> </span>mesongs<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--optim<span class="w"> </span>mesongs<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--init_checkpoint<span class="w"> </span>/mnt/storage/users/szxie_data/MesonGS/outputs/360_v2/bicycle/baseline/3dgs/point_cloud/iteration_30000/point_cloud.ply
+<span class="w">    </span>--init_checkpoint<span class="w"> </span>/output/gs/point_cloud/iteration_30000/point_cloud.ply
 </pre></div>
 </div>
 <p>Evaluate</p>
@@ -343,7 +343,7 @@ document.write(`
 <span class="w">    </span>--model<span class="w"> </span>mesongs<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--optim<span class="w"> </span>mesongs<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--eval_mode<span class="w"> </span>ENCODE_DECODE<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--checkpoint<span class="w"> </span>/output/mesongs//checkpoints/ckpt5000.pth
+<span class="w">    </span>--checkpoint<span class="w"> </span>/output/mesongs/checkpoints/ckpt5000.pth
 </pre></div>
 </div>
 </section>
