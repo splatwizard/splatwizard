@@ -1,5 +1,6 @@
-# 3D Gaussian Splatting
-Train model
+# Speedy-Splat
+
+## Train model
 ```shell
 sw-train \
     --source_path /data/MipNeRF-360/bicycle \
@@ -8,7 +9,7 @@ sw-train \
     --optim speedy_splat
 ```
 
-Evaluate model
+## Evaluate model
 ```shell
 sw-eval \
     --source_path /data/MipNeRF-360/bicycle \
