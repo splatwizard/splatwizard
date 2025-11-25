@@ -1,0 +1,4 @@
+from splatwizard._cmod.rasterizer.pup_fisher import GaussianRasterizationSettings as PUPFisherGaussianRasterizationSettings
+from splatwizard._cmod.rasterizer.pup_fisher import GaussianRasterizer as PUPFisherGaussianRasterizer
+
+__all__ = ['PUPFisherGaussianRasterizationSettings', 'PUPFisherGaussianRasterizer']

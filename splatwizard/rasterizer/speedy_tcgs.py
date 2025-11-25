@@ -1,0 +1,4 @@
+from splatwizard._cmod.rasterizer.speedy_tcgs import GaussianRasterizationSettings as SpeedyTCGaussianRasterizationSettings
+from splatwizard._cmod.rasterizer.speedy_tcgs  import GaussianRasterizer as SpeedyTCGaussianRasterizer
+
+__all__ = ['SpeedyTCGaussianRasterizationSettings', 'SpeedyTCGaussianRasterizer']

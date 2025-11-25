@@ -1,0 +1,5 @@
+sphinx
+recommonmark
+sphinx_book_theme
+sphinx-markdown-tables
+myst_parser

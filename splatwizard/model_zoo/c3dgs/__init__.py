@@ -1,0 +1,1 @@
+# Compressed 3D Gaussian Splatting for Accelerated Novel View Synthesis

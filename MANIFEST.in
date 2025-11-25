@@ -1,0 +1,8 @@
+prune tests
+prune doc
+
+include LICENSE.md
+include README.md
+recursive-include splatwizard *
+
+global-exclude *~ *.py[cod] *.so

@@ -1,0 +1,5 @@
+n_block: 66
+cb: 4096
+depth: 14
+prune: 0.1
+finetune_lr_scale: 1.6
