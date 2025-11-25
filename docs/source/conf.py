@@ -13,12 +13,12 @@
 import os
 import sys
 import pathlib
-import torch
+# import torch
 
 
 
-cap_ver = torch.cuda.get_device_capability()
-os.environ['TORCH_CUDA_ARCH_LIST'] = f'{cap_ver[0]}.{cap_ver[1]}'
+# cap_ver = torch.cuda.get_device_capability()
+# os.environ['TORCH_CUDA_ARCH_LIST'] = f'{cap_ver[0]}.{cap_ver[1]}'
 
 
 project_dir = pathlib.Path(__file__).resolve().parent.parent.parent
