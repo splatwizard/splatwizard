@@ -45,7 +45,7 @@ def export_extension(mod_dir):
 
 setup(
     name="splatwizard",
-    version="0.0.1",
+    version="0.0.4",
     packages=find_packages(),
     # packages=['mypkg', 'mypkg.subpkg1', 'mypkg.subpkg2'],
     install_requires=[
