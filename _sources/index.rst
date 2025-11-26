@@ -48,6 +48,7 @@ Latest News
    :caption: Library API
 
    library_api/rasterizer
+   library_api/metrics
 
 
 .. toctree::
