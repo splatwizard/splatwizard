@@ -45,17 +45,25 @@ Latest News
 .. toctree::
    :hidden:
    :maxdepth: 2
-   :caption: Model Zoo
+   :caption: Library API
 
-   model_zoo/model_list
+   library_api/rasterizer
+
 
 .. toctree::
    :hidden:
    :maxdepth: 2
-   :caption: Reference
+   :caption: Model Zoo
 
-   api_ref/config
-   api_ref/rasterizer
+   model_zoo/model_list
+
+.. .. toctree::
+..    :hidden:
+..    :maxdepth: 2
+..    :caption: Reference
+
+..    api_ref/config
+..    api_ref/rasterizer
 
 
 
