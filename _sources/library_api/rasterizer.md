@@ -1,6 +1,6 @@
 # Rasterizer
 
-Splatwizard integrates multiple rasterizers from prior work, which can be directly imported and used. Each rasterizer closely follows the papi design in the original codebase to minimize migration and application efforts.
+Splatwizard integrates multiple rasterizers from prior work, which can be directly imported and used. Each rasterizer closely follows the design in the original codebase to minimize tedious migration work.
 
 ## Standard Gaussian rasterizer
 
