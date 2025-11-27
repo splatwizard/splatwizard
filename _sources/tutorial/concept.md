@@ -61,7 +61,7 @@ class GSOptimizationParams(OptimizationParams):
 
 The process of defining the optimizer also remains consistent with the original implementation.
 
-{lineno-start=1 emphasize-lines="12-16"}
+{lineno-start=1 emphasize-lines="13-17"}
 
 ```python
 from splatwizard.modules.gaussian_model import BaseGaussianModel
@@ -82,18 +82,17 @@ class GSModel(BaseGaussianModel):
     def update_learning_rate(self, step: int):
         ...  # define lr update operation 
 
-
 ```
 
 
-## Step 3: Define Dencification and Prune Method
+## Step 3: Define Densification and Prune Method
 Densification and pruning remain consistent with the original version.
 There is a little difference that we use a special dataclass `RenderResult` as the input of statistic method.
 By adopting a dedicated dataclass for intermediate data transfer, 
 we avoid functions with excessive parameters, minimizing potential coding mistakes.
 
 
-{lineno-start=1 emphasize-lines="3,19-47"}
+{lineno-start=1 emphasize-lines="3,20-48"}
 
 ```python
 from splatwizard.modules.gaussian_model import BaseGaussianModel
@@ -234,7 +233,7 @@ The scheduler ensures operations execute in their designated phases while mainta
 This proves particularly valuable when extending the framework to support novel compression techniques requiring additional processing stages.
 
 
-{lineno-start=1 emphasize-lines="3,5,20,24-45,74,78-84"}
+{lineno-start=1 emphasize-lines="3,5,19,23-43,72,76-82"}
 
 ```python
 import torch
