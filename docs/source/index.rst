@@ -4,9 +4,9 @@
    contain the root `toctree` directive.
 
 
-SplatWizard: Gaussian Splatting Compression Toolkit
+Splatwizard: Gaussian Splatting Compression Toolkit
 ======================================================
-SplatWizard is a one-stop toolkit designed for researching 3DGS compression, dedicated to accelerating community exploration in this field.
+Splatwizard is a one-stop toolkit designed for researching 3DGS compression, dedicated to accelerating community exploration in this field.
 With flexible API design, you can easily combine advanced components from state-of-the-art models to build customized models.
 Key features of the project include:
 
@@ -28,6 +28,7 @@ Latest News
    :caption: Getting Start
 
    getting_start/installation
+   getting_start/prepare_dataset
    getting_start/first_model
    getting_start/faq
 
