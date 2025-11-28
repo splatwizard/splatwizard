@@ -186,7 +186,7 @@ class Scene:
             scene_info = readColmapSceneInfo(
                     str(output_dir.parent),
                     str(source_path.absolute()),
-                    ppl.data_mode, llffhold=ppl.test_sample_freq
+                    ppl.data_mode, llffhold=ppl.test_sample_freq, lod=ppl.lod
             )
 
 
