@@ -73,4 +73,4 @@ For more models. please check [Model List](splatwizard.github.io/splatwizard/mod
 
 ## License
 
-Splatwiard is licensed under the MIT License. The project incorporates code from other projects, which remains under their original licenses.
+Splatwizard is licensed under the MIT License. The project incorporates code from other projects, which remains under their original licenses.
