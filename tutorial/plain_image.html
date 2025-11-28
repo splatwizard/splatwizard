@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Train Your First 3DGS model &#8212; Splatwizard  documentation</title>
+    <title>Use images without SfM &#8212; Splatwizard  documentation</title>
   
   
   
@@ -40,11 +40,11 @@
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_start/first_model';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorial/plain_image';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FAQ" href="faq.html" />
-    <link rel="prev" title="Prepare Dataset" href="prepare_dataset.html" />
+    <link rel="next" title="Common Configuration" href="common_config.html" />
+    <link rel="prev" title="Use new model" href="register_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -133,19 +133,19 @@
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Start</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prepare_dataset.html">Prepare Dataset</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Train Your First 3DGS model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../getting_start/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_start/prepare_dataset.html">Prepare Dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_start/first_model.html">Train Your First 3DGS model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_start/faq.html">FAQ</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/concept.html">Define a GS Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/model_mixin.html">Use Mixins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/register_model.html">Use new model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/plain_image.html">Use images without SfM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/common_config.html">Common Configuration</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="concept.html">Define a GS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_mixin.html">Use Mixins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="register_model.html">Use new model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Use images without SfM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_config.html">Common Configuration</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Library API</span></p>
 <ul class="nav bd-sidenav">
@@ -222,7 +222,7 @@
       
       
       
-      <li><a href="../_sources/getting_start/first_model.md" target="_blank"
+      <li><a href="../_sources/tutorial/plain_image.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -304,7 +304,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Train Your First 3DGS model</h1>
+    <h1>Use images without SfM</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -318,25 +318,25 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="train-your-first-3dgs-model">
-<h1>Train Your First 3DGS model<a class="headerlink" href="#train-your-first-3dgs-model" title="Permalink to this heading">#</a></h1>
-<p>SplatWizard provides both the original 3DGS model and a series of compression-related model implementations.
-Taking the original 3DGS as an example, you can train it using default parameters:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sw-train<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--source_path<span class="w"> </span>/data/MipNeRF-360/bicycle<span class="w"> </span><span class="se">\ </span><span class="w">  </span><span class="c1"># specify the directory of dataset</span>
-<span class="w">  </span>--output_dir<span class="w"> </span>/output/gs<span class="w"> </span><span class="se">\ </span><span class="w">                  </span><span class="c1"># specify output directory</span>
-<span class="w">  </span>--model<span class="w"> </span>3dgs<span class="w"> </span><span class="se">\ </span><span class="w">                             </span><span class="c1"># specify model</span>
-<span class="w">  </span>--optim<span class="w"> </span>3dgs<span class="w">                                </span><span class="c1"># specify optimization parameters</span>
+  <section id="use-images-without-sfm">
+<h1>Use images without SfM<a class="headerlink" href="#use-images-without-sfm" title="Permalink to this heading">#</a></h1>
+<p>When specifying a dataset using <code class="docutils literal notranslate"><span class="pre">--source_path</span></code> option,
+the path can contain only image files without including SfM.
+In this case, Splatwizard will automatically use Colmap to build the SfM.
+For example, when using the following command to train the model</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sw-train<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--source_path<span class="w"> </span>/data/dataset/mipnerf/bicycles/images<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--model<span class="w"> </span>3dgs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--optim<span class="w"> </span>3dgs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output_dir<span class="w"> </span>/data/output/splatwizard/dev/
 </pre></div>
 </div>
-<p>To evaluate the model, using</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sw-eval<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--source_path<span class="w"> </span>/data/MipNeRF-360/bicycle<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--output_dir<span class="w"> </span>/output/gs<span class="w"> </span><span class="se">\ </span><span class="w">                 </span>
-<span class="w">    </span>--model<span class="w"> </span>3dgs<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--optim<span class="w"> </span>3dgs<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--checkpoint<span class="w"> </span>/output/gs/checkpoints/ckpt30000.pth
-</pre></div>
+<p>Splatwizard will automatically create <code class="docutils literal notranslate"><span class="pre">/data/dataset/mipnerf/bicycles/images_colmap</span></code> and
+generate corresponding SfM data to the folder.</p>
+<div class="myclass1 myclass2 admonition tip" id="a-tip-reference">
+<p class="admonition-title">Tip</p>
+<p>Due to limitations of pycolmap, this reconstruction process can only be executed on the CPU.
+If CUDA acceleration is required for the reconstruction process, please refer to <a class="reference external" href="https://pypi.org/project/pycolmap/">link</a></p>
 </div>
 </section>
 
@@ -352,20 +352,20 @@ Taking the original 3DGS as an example, you can train it using default parameter
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="prepare_dataset.html"
+       href="register_model.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Prepare Dataset</p>
+        <p class="prev-next-title">Use new model</p>
       </div>
     </a>
     <a class="right-next"
-       href="faq.html"
+       href="common_config.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">FAQ</p>
+        <p class="prev-next-title">Common Configuration</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

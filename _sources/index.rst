@@ -41,6 +41,7 @@ Latest News
    tutorial/concept
    tutorial/model_mixin
    tutorial/register_model
+   tutorial/plain_image
    tutorial/common_config
 
 .. toctree::
