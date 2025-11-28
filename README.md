@@ -31,6 +31,14 @@ Additionally, pip compiles components in an isolated environment by default. You
 pip install splatwizard --verbose --no-build-isolation
 ```
 
+To speed up compilation, the installation process uses all available CPU cores by default. 
+If you need to limit the number of cores used for compilation, you can specify the maximum cores used via environment variable `MAX_BUILD_JOBS`.
+The following command will use up to 8 CPU cores during compilation.
+```bash
+MAX_BUILD_JOBS=8 pip install splatwizard --verbose --no-build-isolation
+```
+
+
 ## Quick start
 
 Train your first 3DGS model in splatwizard
