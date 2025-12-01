@@ -1,20 +1,37 @@
-import pathlib
-from pathlib import Path
-from setuptools import setup, find_packages, find_namespace_packages
+import copy
 import os
+from pathlib import Path
+from setuptools import setup, find_packages
 
 from torch.utils.cpp_extension import CUDAExtension, BuildExtension
 
-BUILD_NO_CUDA = os.getenv("BUILD_NO_CUDA", "0") == "1"
+
+BUILD_JOBS = os.getenv("MAX_BUILD_JOBS")
 
 
-def map_path_str(source: Path):
+def map_path_str(source: str):
     s = str(Path(source).relative_to(Path(__file__).resolve().parent))
     return './' + s
 
-def get_ext():
 
-    return BuildExtension
+class ParallelBuildExt(BuildExtension):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+
+        if BUILD_JOBS is None:
+            # Use maximum cpu cores to compile extensions by default
+            self.parallel = True
+        else:
+            self.parallel = int(BUILD_JOBS)
+
+    def build_extension(self, ext):
+        # Append the extension name to the temp build directory
+        # so that each module builds to its own directory.
+        # We need to make a (shallow) copy of 'self' here
+        # so that we don't overwrite this value when running in parallel.
+        self_copy = copy.copy(self)
+        self_copy.build_temp = os.path.join(self.build_temp, ext.name)
+        BuildExtension.build_extension(self_copy, ext)
 
 
 def export_extension(mod_dir):
@@ -45,7 +62,7 @@ def export_extension(mod_dir):
 
 setup(
     name="splatwizard",
-    version="0.0.4",
+    version="0.0.5",
     packages=find_packages(),
     # packages=['mypkg', 'mypkg.subpkg1', 'mypkg.subpkg2'],
     install_requires=[
@@ -60,29 +77,35 @@ setup(
         "numpy",
         "simple-parsing",
         "pycolmap",
-        "ninja",
         "matplotlib",
         "colorama",
         "vector-quantize-pytorch==1.22.0",
         "dahuffman",
-        "torchac"
+        "torchac",
+        "torch_scatter"
     ],
     extras_require={
-            # dev dependencies. Install them by `pip install gsplat[dev]`
-            "dev": [
-                # "black[jupyter]==22.3.0",
-                # "isort==5.10.1",
-                # "pylint==2.13.4",
-                "pytest",
-                "tox-current-env",
-                "tox"
-                # "pytest-xdist==2.5.0",
-                # "typeguard>=2.13.3",
-                # "pyyaml==6.0",
-                # "build",
-                # "twine",
-            ],
-        },
+        "recon": [
+            "point_cloud_utils"
+            "trimesh",
+            "open3d",
+            "kornia",
+        ],
+        # dev dependencies. Install them by `pip install gsplat[dev]`
+        "dev": [
+            # "black[jupyter]==22.3.0",
+            # "isort==5.10.1",
+            # "pylint==2.13.4",
+            "pytest",
+            "tox-current-env",
+            "tox"
+            # "pytest-xdist==2.5.0",
+            # "typeguard>=2.13.3",
+            # "pyyaml==6.0",
+            # "build",
+            # "twine",
+        ],
+    },
     python_requires=">=3.7.13",
     author="actcwlf",
     description="Gaussian Splatting compression toolkit",
@@ -99,6 +122,7 @@ setup(
             "sw-train=splatwizard.scripts.train:main",
             "sw-eval=splatwizard.scripts.eval:main",
             "sw-encode=splatwizard.scripts.encode:main",
+            "sw-recon=splatwizard.scripts.reconstruct:main",
         ],
     },
     ext_modules=[
@@ -122,6 +146,6 @@ setup(
         export_extension('splatwizard/_cmod/tiny_cuda_nn'),
     ],
     cmdclass={
-        'build_ext': get_ext()
+        'build_ext': ParallelBuildExt
     }
 )
