@@ -142,10 +142,11 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorial</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/concept.html">Define a GS Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/common_config.html">Common Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/model_mixin.html">Use Mixins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/register_model.html">Use new model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/plain_image.html">Use images without SfM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorial/common_config.html">Common Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/reconstruction.html">Extract mesh from 3DGS</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Library API</span></p>
 <ul class="nav bd-sidenav">
@@ -166,6 +167,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/hac.html">HAC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/cat3dgs.html">CAT-3DGS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/mesongs.html">MesonGS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../model_zoo/models/surf_gs.html">2D Gaussian Splatting</a></li>
 </ul>
 </li>
 </ul>
@@ -328,8 +330,15 @@ document.write(`
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>splatwizard<span class="w"> </span>--verbose
 </pre></div>
 </div>
-<p>Additionally, pip compiles components in an isolated environment by default. You can use <code class="docutils literal notranslate"><span class="pre">--no-build-isolation</span></code> to perform the compilation directly in the current environment.</p>
+<p>Additionally, pip compiles components in an isolated environment by default. You can use <code class="docutils literal notranslate"><span class="pre">--no-build-isolation</span></code> to perform the compilation directly in the current environment.
+Make sure <code class="docutils literal notranslate"><span class="pre">torch</span></code> and <code class="docutils literal notranslate"><span class="pre">ninja</span></code> are installed before running the command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>splatwizard<span class="w"> </span>--verbose<span class="w"> </span>--no-build-isolation
+</pre></div>
+</div>
+<p>To speed up compilation, the installation process uses all available CPU cores by default.
+If you need to limit the number of cores used for compilation, you can specify the maximum cores used via environment variable <code class="docutils literal notranslate"><span class="pre">MAX_BUILD_JOBS</span></code>.
+The following command will use up to 8 CPU cores during compilation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MAX_BUILD_JOBS</span><span class="o">=</span><span class="m">8</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>splatwizard<span class="w"> </span>--verbose<span class="w"> </span>--no-build-isolation
 </pre></div>
 </div>
 </section>

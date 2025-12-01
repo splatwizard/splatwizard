@@ -15,7 +15,7 @@ Key features of the project include:
 - **Multiple baseline models** included for comparison
 
 .. warning::
-   SplatWizard is under active development, and its API may changes in the future.
+   Splatwizard is under active development, and its API may changes in the future.
    Currently, we recommend using it only for evaluation or testing purposes.
 
 Latest News
@@ -39,10 +39,12 @@ Latest News
    :caption: Tutorial
 
    tutorial/concept
+   tutorial/common_config
    tutorial/model_mixin
    tutorial/register_model
    tutorial/plain_image
-   tutorial/common_config
+   tutorial/reconstruction
+
 
 .. toctree::
    :hidden:

@@ -32,4 +32,5 @@ models/controlgs
 models/hac
 models/cat3dgs
 models/mesongs
+models/surf_gs
 ```
