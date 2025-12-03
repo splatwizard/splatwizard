@@ -70,11 +70,11 @@ def psnr_func(img1, img2):
     return 20 * torch.log10(1.0 / torch.sqrt(mse))
 
 
-def lpips_func(in0, in1, retPerLayer=False, normalize=False):
+def lpips_func(in0, in1, ret_per_layer=False, normalize=True):
     global LPIPS_MODEL
     if LPIPS_MODEL is None:
         LPIPS_MODEL = lpips.LPIPS(net='vgg', verbose=False).to('cuda')
-    return LPIPS_MODEL(in0, in1, retPerLayer, normalize)
+    return LPIPS_MODEL(in0, in1, ret_per_layer, normalize)
 
 
 
