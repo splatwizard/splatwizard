@@ -400,7 +400,7 @@ document.write(`
 <li><p><strong>splatwizard.metrics.<font color="#e83e8c">ssim_func</font>(img1: Tensor, img2: Tensor, window_size=11, size_average=True)</strong></p>
 <p>Calculate SSIM value, available for training and evaluation. The batch dimension will be kept if <code class="docutils literal notranslate"><span class="pre">size_average=False</span></code></p>
 </li>
-<li><p><strong>splatwizard.metrics.<font color="#e83e8c">lpips_func</font>(img1: Tensor, img2: Tensor)</strong></p>
+<li><p><strong>splatwizard.metrics.<font color="#e83e8c">lpips_func</font>(img1: Tensor, img2: Tensor, ret_per_layer=False, normalization=True)</strong></p>
 <p>Calculate LPIPS(VGG) value, recommended for evaluation only. The batch dimension will be kept.</p>
 </li>
 <li><p><strong>splatwizard.metrics.<font color="#e83e8c">mse_func</font>(img1: Tensor, img2: Tensor)</strong></p>
