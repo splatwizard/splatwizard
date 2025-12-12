@@ -18,7 +18,7 @@ This section introduce the metrics included in Splatwizard for training and eval
   Calculate SSIM value, available for training and evaluation. The batch dimension will be kept if `size_average=False`
 
 
-- **splatwizard.metrics.<font color="#e83e8c">lpips_func</font>(img1: Tensor, img2: Tensor)**
+- **splatwizard.metrics.<font color="#e83e8c">lpips_func</font>(img1: Tensor, img2: Tensor, ret_per_layer=False, normalization=True)**
   
   Calculate LPIPS(VGG) value, recommended for evaluation only. The batch dimension will be kept.
 

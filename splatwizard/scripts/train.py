@@ -1,16 +1,16 @@
 import pathlib
 import sys
-import os
+# import os
 from enum import Enum
 
 from simple_parsing import ArgumentParser
 from loguru import logger
 
-import torch
+# import torch
 
 from splatwizard.modules.dataclass import TrainContext
 
-from splatwizard.pipeline.eval_model import eval_model
+# from splatwizard.pipeline.eval_model import eval_model
 from splatwizard.config import PipelineParams, OptimizationParams
 from splatwizard.model_zoo import CONFIG_CACHE
 
@@ -70,12 +70,12 @@ def validate_pipeline_parameters(pp: PipelineParams):
     assert pp.eval_mode is None, "Cannot setting eval_mode for training"
 
 
-def main():
-    parser = ArgumentParser(add_config_path_arg=True)
+def main(sys_argv, prog=None):
+    parser = ArgumentParser(prog, add_config_path_arg=True)
     parser.add_arguments(PipelineParams, dest="pipeline")  # noqa
     parser.add_arguments(CONFIG_CACHE[0], dest="model_group")  # noqa
 
-    args = parser.parse_args(sys.argv[1:])
+    args = parser.parse_args(sys_argv)
 
     mp = args.model_group.model
     pp: PipelineParams = args.pipeline
@@ -132,4 +132,4 @@ def main():
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))

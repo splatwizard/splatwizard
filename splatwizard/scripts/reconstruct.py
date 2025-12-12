@@ -66,13 +66,13 @@ def validate_pipeline_parameters(pp: PipelineParams):
             assert type_ in ('pth', 'ply'), f'Unsupported checkpoint type: {pp.checkpoint_type}'
 
 
-def main():
-    parser = ArgumentParser(add_config_path_arg=True)
+def main(sys_argv, prog=None):
+    parser = ArgumentParser(prog, add_config_path_arg=True)
     parser.add_arguments(PipelineParams, dest="pipeline")  # noqa
     parser.add_arguments(CONFIG_CACHE[0], dest="model_group")  # noqa
     parser.add_arguments(MeshExtractorParams, dest="mesh_group") # noqa
 
-    args = parser.parse_args(sys.argv[1:])
+    args = parser.parse_args(sys_argv)
 
     mp = args.model_group.model
     pp: PipelineParams = args.pipeline
@@ -105,4 +105,4 @@ def main():
     reconstruct_model(pp, mp, op, mep,  train_context)
 
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(main(sys.argv[1:]))

@@ -62,7 +62,7 @@ def export_extension(mod_dir):
 
 setup(
     name="splatwizard",
-    version="0.0.5",
+    version="0.0.6",
     packages=find_packages(),
     # packages=['mypkg', 'mypkg.subpkg1', 'mypkg.subpkg2'],
     install_requires=[
@@ -82,7 +82,8 @@ setup(
         "vector-quantize-pytorch==1.22.0",
         "dahuffman",
         "torchac",
-        "torch_scatter"
+        "torch_scatter",
+        "tensorboard"
     ],
     extras_require={
         "recon": [
@@ -118,10 +119,10 @@ setup(
     include_package_data=False,
     entry_points={
         "console_scripts": [
-            # "sw-main=splatwizard.main:main",
+            "sw-main=splatwizard.scripts.main:main",
             "sw-train=splatwizard.scripts.train:main",
             "sw-eval=splatwizard.scripts.eval:main",
-            "sw-encode=splatwizard.scripts.encode:main",
+            # "sw-encode=splatwizard.scripts.encode:main",
             "sw-recon=splatwizard.scripts.reconstruct:main",
         ],
     },

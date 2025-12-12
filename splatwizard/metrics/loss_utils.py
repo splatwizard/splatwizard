@@ -1,20 +1,13 @@
-#
-# Copyright (C) 2023, Inria
-# GRAPHDECO research group, https://team.inria.fr/graphdeco
-# All rights reserved.
-#
-# This software is free for non-commercial, research and evaluation use 
-# under the terms of the LICENSE.md file.
-#
-# For inquiries contact  george.drettakis@inria.fr
-#
-import lpips
+from math import exp
+
 import torch
 import torch.nn.functional as F
 from torch.autograd import Variable
-from math import exp
 from splatwizard._cmod.fused_ssim import fused_ssim
+from .lpips import lpips
 
+
+LPIPS_MODEL = None
 
 def l1_func(img1, img2):
     return torch.abs((img1 - img2)).mean()
@@ -76,7 +69,12 @@ def psnr_func(img1, img2):
     mse = (((img1 - img2)) ** 2).view(img1.shape[0], -1).mean(1, keepdim=True)
     return 20 * torch.log10(1.0 / torch.sqrt(mse))
 
-lpips_func = lpips.LPIPS(net='vgg').to('cuda')
+
+def lpips_func(in0, in1, ret_per_layer=False, normalize=True):
+    global LPIPS_MODEL
+    if LPIPS_MODEL is None:
+        LPIPS_MODEL = lpips.LPIPS(net='vgg', verbose=False).to('cuda')
+    return LPIPS_MODEL(in0, in1, ret_per_layer, normalize)
 
 
 
