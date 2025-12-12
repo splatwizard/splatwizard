@@ -82,7 +82,8 @@ setup(
         "vector-quantize-pytorch==1.22.0",
         "dahuffman",
         "torchac",
-        "torch_scatter"
+        "torch_scatter",
+        "tensorboard"
     ],
     extras_require={
         "recon": [

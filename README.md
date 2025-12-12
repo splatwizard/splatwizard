@@ -71,7 +71,7 @@ For more models. please check [Model List](splatwizard.github.io/splatwizard/mod
 * [Installation](https://splatwizard.github.io/splatwizard/getting_start/installation.html)
 * [Training model](https://splatwizard.github.io/splatwizard/getting_start/first_model.html)
 * [How to develop your own model](https://splatwizard.github.io/splatwizard/tutorial/concept.html)
-* [Model zoo](https://interdigitalinc.github.io/CompressAI/zoo.html)
+* [Model zoo](https://splatwizard.github.io/splatwizard/model_zoo/model_list.html)
 
 
 ## License
