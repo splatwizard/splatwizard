@@ -1,5 +1,7 @@
 # Splatwizard: Gaussian Splatting Compression Toolkit
 
+
+[![arXiv](https://img.shields.io/badge/arXiv-2512.24742-b31b1b.svg)](https://arxiv.org/abs/2512.24742)
 [![License](https://img.shields.io/github/license/splatwizard/splatwizard?color=blue)](https://github.com/splatwizard/splatwizard/blob/main/LICENSE.md)
 [![PyPI](https://img.shields.io/pypi/v/splatwizard?color=brightgreen)](https://pypi.org/project/splatwizard/)
 
@@ -13,6 +15,7 @@ Key features of the project include:
 - **Multiple baseline models** included for comparison
 
 ## Latest News
+- 2025/12/31: Preprint available on [arXiv](https://arxiv.org/abs/2512.24742).
 - 2025/11/25: Release first version.
 
 ## Installation
@@ -62,6 +65,18 @@ For more models. please check [Model List](splatwizard.github.io/splatwizard/mod
 * [How to develop your own model](https://splatwizard.github.io/splatwizard/tutorial/concept.html)
 * [Model zoo](https://interdigitalinc.github.io/CompressAI/zoo.html)
 
+
+## Citation
+If you find our work helpful, please consider citing:
+
+```
+@article{liu2025splatwizard,
+  title={Splatwizard: A Benchmark Toolkit for 3D Gaussian Splatting Compression},
+  author={Liu, Xiang and Zhou, Yimin and Wang, Jinxiang and Huang, Yujun and Xie, Shuzhao and Qin, Shiyu and Hong, Mingyao and Li, Jiawei and Wang, Yaowei and Wang, Zhi and others},
+  journal={arXiv preprint arXiv:2512.24742},
+  year={2025}
+}
+```
 
 ## License
 
