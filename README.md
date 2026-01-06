@@ -6,7 +6,7 @@
 [![PyPI](https://img.shields.io/pypi/v/splatwizard?color=brightgreen)](https://pypi.org/project/splatwizard/)
 
 
-Splatwizard is a one-stop toolkit designed for researching 3DGS compression, dedicated to accelerating community exploration in this field.
+Splatwizard is a one-stop toolkit designed for research on 3DGS compression, dedicated to accelerating community exploration in this field.
 With flexible API design, you can easily combine advanced components from state-of-the-art models to build customized models.
 Key features of the project include:
 
