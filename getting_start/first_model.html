@@ -388,6 +388,12 @@ document.write(`
 <h1>Train Your First 3DGS model<a class="headerlink" href="#train-your-first-3dgs-model" title="Permalink to this heading">#</a></h1>
 <p>SplatWizard provides both the original 3DGS model and a series of compression-related model implementations.
 Taking the original 3DGS as an example, you can train it using default parameters:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sw-train</span></code> and <code class="docutils literal notranslate"><span class="pre">sw-eval</span></code> commands are generic entry points for all models in SplatWizard.
+While the example below uses the standard 3DGS pipeline, some compression-oriented models may require additional renderer outputs, model-specific configuration, or extra codec-related modules beyond the default 3DGS workflow.
+When switching to another model, please also check its model-zoo page and related tutorial documents.</p>
+</div>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sw-train<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--source_path<span class="w"> </span>/data/MipNeRF-360/bicycle<span class="w"> </span><span class="se">\ </span><span class="w">  </span><span class="c1"># specify the directory of dataset</span>
 <span class="w">  </span>--output_dir<span class="w"> </span>/output/gs<span class="w"> </span><span class="se">\ </span><span class="w">                  </span><span class="c1"># specify output directory</span>
