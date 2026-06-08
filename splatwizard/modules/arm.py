@@ -16,9 +16,6 @@ from einops import rearrange
 import torch.nn as nn
 
 from .linear_layers import CustomLinear, CustomLinearResBlock
-# from scene.gaussian_model import GaussianModel
-# from scene.hexplane import HexPlaneField
-# from splatwizard.compression.quantizer import UniformNoiseQuantizer
 
 
 class ArmMLP(torch.jit.ScriptModule):
@@ -232,57 +229,3 @@ def compute_rate(x: Tensor, raw_proba_param: Tensor) -> Tuple[Tensor, Tensor, Te
     return rate, mu, scale
 
 
-# if __name__ == '__main__':
-#     kplanes_config = {
-#         'grid_dimensions': 2,
-#         'input_coordinate_dim': 3,
-#         'output_coordinate_dim': {'s': 4, 'r': 1, 'o': 1, 'c': 8},
-#         'resolution': [32, 32, 32]
-#     }
-#     multires = [1, 2, 4, 8]
-#     Hexplane = HexPlaneField(1., kplanes_config, multires, mode='r')
-#
-#     quantizer = UniformNoiseQuantizer()
-#     log_2_encoder_gains = nn.Parameter(
-#         torch.arange(0., 5), requires_grad=True
-#     )
-#     for i, cur_latent in enumerate(Hexplane.grids):
-#         for latent in cur_latent:
-#             print(latent.shape)
-#
-#     sent_latent = [
-#         quantizer.apply(
-#             latent * torch.pow(2, log_2_encoder_gains[i]),  # Apply Q. step
-#             True  # Noise if needed
-#         )
-#         for latent in cur_latent
-#         for i, cur_latent in enumerate(Hexplane.grids)
-#     ]
-#     ori_latent = [
-#         latent
-#         for latent in cur_latent
-#         for i, cur_latent in enumerate(Hexplane.grids)
-#     ]
-#     grids_hat = nn.ModuleList()
-#     for i, cur_latent in enumerate(Hexplane.grids):
-#         temp = nn.ParameterList()
-#         for latent in cur_latent:
-#             quant_step = torch.pow(2, log_2_encoder_gains[i])
-#             quant_latent = quantizer.apply(
-#                 latent * quant_step,  # Apply Q. step
-#                 True  # Noise if needed
-#             )
-#             sent_latent.append(quant_latent)
-#             temp.append(quant_latent / quant_step)
-#         grids_hat.append(temp)
-#
-#     non_zero_pixel_ctx = int((5 ** 2 - 1) / 2)
-#     non_zero_pixel_ctx_index = torch.arange(0, non_zero_pixel_ctx)
-#
-#     flat_latent, flat_context = get_flat_latent_and_context(
-#         sent_latent, 5, non_zero_pixel_ctx_index
-#     )
-#     layers_arm: List = [16, 16, 16, 16]
-#     arm = torch.jit.script(ArmMLP(non_zero_pixel_ctx, layers_arm))
-#     raw_proba_param = arm(flat_context)
-#     rate_y, _, _ = compute_rate(flat_latent, raw_proba_param)

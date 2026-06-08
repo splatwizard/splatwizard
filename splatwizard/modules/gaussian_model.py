@@ -184,8 +184,6 @@ class BaseGaussianModel:
         for k, v in self.__dict__.items():
             if isinstance(v, nn.Module):
                 v.train()
-        # for func in self._called_at_switch_to_train:
-        #     func()
         for func in self._train_hooks:
             func()
 

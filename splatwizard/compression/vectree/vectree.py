@@ -231,7 +231,6 @@ class VecTreeCodec:
         ###################################################
         only_vq_some_vector = True
         if only_vq_some_vector:
-            # tensor_importance = torch.tensor(importance)
             tensor_importance = importance.detach().clone()
             large_val, large_index = torch.topk(tensor_importance,
                                                 k=int(tensor_importance.shape[0] * (1 - self.vq_ratio)), largest=True)
@@ -282,19 +281,6 @@ class VecTreeCodec:
             return build_ply_data(dequantized_feats.cpu().numpy(),  self.sh_dim)
 
 
-        # print(dequantized_feats)
-        # if self.no_save_ply == False:
-        #     os.makedirs(f'{self.ply_path}/', exist_ok=True)
-        #     write_ply_data(dequantized_feats.cpu().numpy(), self.ply_path, self.sh_dim)
 
 
-# if __name__ == '__main__':
-#     opt = parse_args()
-#     device = torch.device('cuda')
-#     vq = Quantization(opt)
-#
-#     vq.quantize()
-#     vq.dequantize()
-#
-#     print("All done!")
 

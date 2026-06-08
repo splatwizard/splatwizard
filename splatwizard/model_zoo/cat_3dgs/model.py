@@ -364,7 +364,7 @@ class CAT3DGS(GaussianModel, nn.Module):
 
     @task
     def update_cam_mask(self, iteration: int, ppl: PipelineParams, opt: CAT3DGSOptimizationParams, cam_iterator: CameraIterator):
-        # if mask_weight.shape[0] != gaussians.get_anchor.shape[0] or iteration == 0:  # 重算mask
+        # if mask_weight.shape[0] != gaussians.get_anchor.shape[0] or iteration == 0:  # Recalculate mask
 
         if self.mask_weight.shape[0] == self.get_anchor.shape[0]:
             if iteration != 0:
@@ -547,7 +547,7 @@ class CAT3DGS(GaussianModel, nn.Module):
         Q_scaling = 0.001
         Q_offsets = 0.2
         if mode == GenerateMode.TRAINING_FULL_PRECISION or mode == GenerateMode.DECODING_AS_IS:
-            # 全精度训练和解码后推断都不对feature进行处理
+            # No feature processing for full-precision training and post-decoding inference
             pass
         elif mode == GenerateMode.TRAINING_QUANTIZED: #step > 3000 and step <= 10000:
                 # quantization
@@ -850,7 +850,7 @@ class CAT3DGS(GaussianModel, nn.Module):
             retain_grad = (step < opt.update_until and step >= 0)
         else:
             retain_grad = False
-        # TODO: 检查实际效果
+        # TODO: Check actual effectiveness
         if retain_grad:
             try:
                 screenspace_points.retain_grad()
@@ -1306,7 +1306,7 @@ class CAT3DGS(GaussianModel, nn.Module):
 
     def training_setup(self, training_args):
 
-        # self.update_anchor_bound()  # 原版中未包含此调整，原因待查. Update:此处不应更新，因为加载时也会使用此函数。正确的时机在pre_task
+        # self.update_anchor_bound()  # This adjustment is not included in the original version, reason to be investigated. Update: Should not update here because this function is also used during loading. The correct timing is in pre_task
 
         self.percent_dense = training_args.percent_dense
 

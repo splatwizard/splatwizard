@@ -79,19 +79,12 @@ def encode_anchor(q_anchor: np.array, tmc3_path: pathlib.Path):
 
         with open(bin_path, 'rb') as bin_file:
             bittream = bin_file.read()
-        # anchor_bit = os.path.getsize(bin_path) * 8
 
         # print(result)
 
         # exit()
 
-        # origin = pd.DataFrame({
-        #     'x': q_anchor[:, 0],
-        #     'y': q_anchor[:, 1],
-        #     'z': q_anchor[:, 2]
-        # })
 
-        # origin = origin.sort_values(['x', 'y', 'z']).reset_index(drop=True)
 
 
         decoded_anchor = _decode_anchor(dirname, tmc3_path)
@@ -108,11 +101,6 @@ def encode_anchor(q_anchor: np.array, tmc3_path: pathlib.Path):
     selection = origin_order[decoded['order'].to_numpy().argsort()]
 
 
-    # t = q_anchor[selection]
-    #
-    # t =  np.abs((t -decoded_anchor)).sum()
-    #
-    # print(t)
 
     return selection, bittream
 
@@ -121,7 +109,6 @@ def encode_anchor(q_anchor: np.array, tmc3_path: pathlib.Path):
 def decode_coordinate(bitstream, tmc3_path: pathlib.Path):
     with tempfile.TemporaryDirectory() as dirname:
         dirname = pathlib.Path(dirname)
-        # ply_path = str(dirname / 'anchor_pc.ply')
         bin_path = str(dirname / 'anchor_compressed.drc')
         with open(bin_path, 'wb') as bin_file:
             bin_file.write(bitstream)

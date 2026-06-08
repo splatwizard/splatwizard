@@ -3,6 +3,12 @@
 SplatWizard provides both the original 3DGS model and a series of compression-related model implementations. 
 Taking the original 3DGS as an example, you can train it using default parameters:
 
+:::{note}
+The `sw-train` and `sw-eval` commands are generic entry points for all models in SplatWizard.
+While the example below uses the standard 3DGS pipeline, some compression-oriented models may require additional renderer outputs, model-specific configuration, or extra codec-related modules beyond the default 3DGS workflow.
+When switching to another model, please also check its model-zoo page and related tutorial documents.
+:::
+
 ```shell
 sw-train \
   --source_path /data/MipNeRF-360/bicycle \   # specify the directory of dataset

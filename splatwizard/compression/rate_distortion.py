@@ -39,16 +39,14 @@ class MahalanobisDistance(torch.nn.Module):
         self.covariance_matrix = covariance_matrix
 
     def forward(self, input, target):
-        # 计算马氏距离
+        # Calculate Mahalanobis distance
         diff = input - target
-        # 扩展协方差矩阵以便与批处理数据相匹配
+        # Expand covariance matrix to match batch data
         extended_cov_matrix = self.covariance_matrix.unsqueeze(0).expand(input.size(0), -1, -1).cuda()
-        # 计算马氏距离
+        # Calculate Mahalanobis distance
         temp = torch.diagonal(
             torch.matmul(torch.matmul(diff.unsqueeze(1), torch.inverse(extended_cov_matrix)), diff.unsqueeze(2)),
             dim1=1, dim2=2)
-        # if torch.min(temp) > 0:
-        #     print(temp)
         mahalanobis_dists = torch.mean(torch.sqrt(temp))
         # print(mahalanobis_dists)
         return mahalanobis_dists

@@ -210,3 +210,6 @@ __marimo__/
 to_yaml.py
 collect_v2.py
 collect.py
+
+.codex
+.vscode/

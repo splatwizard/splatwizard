@@ -2,7 +2,6 @@ import json
 import os
 import pathlib
 import tempfile
-# from random import randint
 
 import torch
 from splatwizard.modules.dataclass import EvalPack

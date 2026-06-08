@@ -97,8 +97,6 @@ def read_colmap_cameras(cam_extrinsics, cam_intrinsics, images_folder, scale_mat
         R = np.transpose(qvec2rotmat(extr.qvec))
         T = np.array(extr.tvec)
 
-        # print(T)
-        # if intr.model=="SIMPLE_PINHOLE":
         if intr.model=="SIMPLE_PINHOLE" or intr.model == "SIMPLE_RADIAL":
             focal_length_x = intr.params[0]
             FovY = focal2fov(focal_length_x, height)
@@ -115,7 +113,6 @@ def read_colmap_cameras(cam_extrinsics, cam_intrinsics, images_folder, scale_mat
 
         image_path = os.path.join(images_folder, os.path.basename(extr.name))
         image_name = os.path.basename(image_path).split(".")[0]
-        # image = Image.open(image_path)
 
         # print(f'image: {image.size}')
 
@@ -196,18 +193,6 @@ def readColmapSceneInfo(path, images, data_mode: DataMode, llffhold=8, lod=None)
     )
     cam_infos = sorted(cam_infos_unsorted.copy(), key = lambda x : x.image_name)
 
-    # TODO: 检查数据划分的合理性
-    # if lod > 0:
-    #         print(f'using lod, using eval')
-    #         if lod < 50:
-    #             train_cam_infos = [c for idx, c in enumerate(cam_infos) if idx > lod]
-    #             test_cam_infos = [c for idx, c in enumerate(cam_infos) if idx <= lod]
-    #             print(f'test_cam_infos: {len(test_cam_infos)}')
-    #         else:
-    #             train_cam_infos = [c for idx, c in enumerate(cam_infos) if idx <= lod]
-    #             test_cam_infos = [c for idx, c in enumerate(cam_infos) if idx > lod]
-    #
-    # else:
 
     if data_mode == DataMode.SPLIT:
         train_cam_infos = [c for idx, c in enumerate(cam_infos) if idx % llffhold != 0]
@@ -241,12 +226,8 @@ def readColmapSceneInfo(path, images, data_mode: DataMode, llffhold=8, lod=None)
         except:
             xyz, rgb, _ = read_points3D_text(txt_path)
         storePly(ply_path, xyz, rgb)
-    # try:
-    # print(f'start fetching data from ply file')
     logger.info(f'start fetching data from ply file')
     pcd = fetchPly(ply_path)
-    # except:
-    #     pcd = None
 
     scene_info = SceneInfo(point_cloud=pcd,
                            train_cameras=train_cam_infos,
@@ -255,8 +236,6 @@ def readColmapSceneInfo(path, images, data_mode: DataMode, llffhold=8, lod=None)
                            ply_path=ply_path)
     return scene_info
 
-# def readCamerasFromTransforms(path, transformsfile, white_background, extension=".png"):
-#     cam_infos = []
 
 #     with open(os.path.join(path, transformsfile)) as json_file:
 #         contents = json.load(json_file)
@@ -317,7 +296,6 @@ def readCamerasFromTransforms(path, transformsfile, white_background, extension=
 
         ct = 0
 
-        # progress_bar = tqdm(frames, desc="Loading dataset")
 
         for idx, frame in enumerate(frames):
             cam_name = os.path.join(path, frame["file_path"] + extension)
@@ -326,11 +304,6 @@ def readCamerasFromTransforms(path, transformsfile, white_background, extension=
             # NeRF 'transform_matrix' is a camera-to-world transform
             c2w = np.array(frame["transform_matrix"])
             
-            # if idx % 10 == 0:
-            #     progress_bar.set_postfix({"num": Fore.YELLOW+f"{ct}/{len(frames)}"+Style.RESET_ALL})
-            #     progress_bar.update(10)
-            # if idx == len(frames) - 1:
-            #     progress_bar.close()
             
             ct += 1
             # change from OpenGL/Blender camera axes (Y up, Z back) to COLMAP (Y down, Z forward)
@@ -368,8 +341,6 @@ def readCamerasFromTransforms(path, transformsfile, white_background, extension=
             cam_infos.append(CameraInfo(uid=idx, ex_id=idx, R=R, T=T, FovY=FovY, FovX=FovX, image=image,
                             image_path=image_path, image_name=image_name, width=image.size[0], height=image.size[1]))
             
-            # if is_debug and idx > 50:
-            #     break
     return cam_infos
 
 
@@ -384,9 +355,6 @@ def readNerfSyntheticInfo(path, white_background, data_mode, extension=".png", p
         train_cam_infos.extend(test_cam_infos)
         test_cam_infos = train_cam_infos
 
-    # if not eval:  # 此处似乎不应当合并
-    #     train_cam_infos.extend(test_cam_infos)
-    #     test_cam_infos = []
 
 
     nerf_normalization = getNerfppNorm(train_cam_infos)

@@ -18,7 +18,7 @@ from splatwizard.utils.misc import safe_state
 
 
 def setup_output_dir(pp: PipelineParams, train_context: TrainContext, stage: Enum=None):
-    # 创建输出目录
+    # Create output directory
 
     if pp.output_dir is None:
         return
@@ -31,10 +31,8 @@ def setup_output_dir(pp: PipelineParams, train_context: TrainContext, stage: Enu
     train_context.checkpoint_dir = train_context.output_dir / 'checkpoints'
     train_context.checkpoint_dir.mkdir(exist_ok=True)
 
-    # if pp.env_path is not None:
-    #     os.environ["PATH"] = pp.env_path + ':' + os.environ["PATH"]
 
-    # 初始化日志文件
+    # Initialize log file
     logger.add(train_context.output_dir / 'eval_recon.log')
     # logger.info(f'running tag: {args.tag}')
 
@@ -74,7 +72,6 @@ def main():
 
     args = parser.parse_args(sys.argv[1:])
 
-    # mp = args.model_group.model
     pp: PipelineParams = args.pipeline
     # op: OptimizationParams = args.model_group.optim
     mep: MeshExtractorParams = args.mesh_group
@@ -87,7 +84,7 @@ def main():
     # train_context.model = args.subgroups['model_group.model']
 
     if pp.output_dir is not None:
-        # 创建输出目录
+        # Create output directory
         train_context.base_output_dir = pathlib.Path(pp.output_dir)
         train_context.base_output_dir.mkdir(exist_ok=True, parents=True)
 

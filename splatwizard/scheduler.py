@@ -125,14 +125,6 @@ class Scheduler:
                 Task(i, priority, task, name, logging=logging)
             )
 
-    # def register_one_time_task(
-    #         self,
-    #         step,
-    #         task: TypeTask,
-    #         priority=0, name=None, logging=True, no_args=False):
-    #     self.register_task(
-    #         range(step, step+1), task=task, priority=priority, name=name, logging=logging, no_args=no_args
-    #     )
 
     def init(self, start_step=0):
         self.task_list.sort(key=lambda x: x.step)
@@ -154,10 +146,6 @@ class Scheduler:
         for i in range(len(self.group_task_list)):
             if self.group_task_list[i].step >= start_step:
                 break
-        # i = 0
-        # while i < start_step:
-        #     if i < self.group_task_list[i].step:
-        #         i += 1
 
         self.group_task_list = self.group_task_list[i:]
 

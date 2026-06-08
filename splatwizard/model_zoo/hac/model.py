@@ -368,7 +368,7 @@ class HAC(GaussianModel, nn.Module):
 
     def _calc_entropy_context(self, anchor, visible_mask):
 
-        # TODO: 与HAC对齐
+        # TODO: Align with HAC
 
         feat_context = self.calc_interp_feat(anchor)
         feat_context = self.get_grid_mlp(feat_context)
@@ -425,11 +425,11 @@ class HAC(GaussianModel, nn.Module):
         Q_scaling = 0.001
         Q_offsets = 0.2
         if mode == GenerateMode.TRAINING_FULL_PRECISION or mode == GenerateMode.DECODING_AS_IS:
-            # 全精度训练和解码后推断都不对feature进行处理
+            # No feature processing for full-precision training and post-decoding inference
             pass
 
         elif mode == GenerateMode.TRAINING_QUANTIZED:
-            # 一阶段量化，采用均匀分布模拟量化
+            # Stage 1 quantization, using uniform distribution to simulate quantization
             feat = self.noise_quantizer(feat, Q_feat)
             grid_scaling = self.noise_quantizer(grid_scaling, Q_scaling)
             grid_offsets = self.noise_quantizer(grid_offsets, Q_offsets)
@@ -438,12 +438,12 @@ class HAC(GaussianModel, nn.Module):
                 # grid_scaling = grid_scaling + torch.empty_like(grid_scaling).uniform_(-0.5, 0.5) * Q_scaling
                 # grid_offsets = grid_offsets + torch.empty_like(grid_offsets).uniform_(-0.5, 0.5) * Q_offsets
 
-            # TODO: 注册任务时要考虑
+            # TODO: Consider when registering tasks
             # if step == 10000:
             #     self.update_anchor_bound()
 
         elif mode == GenerateMode.TRAINING_ENTROPY:
-            # 二阶段量化，量化的同时计算码率
+            # Stage 2 quantization, calculate bitrate while quantizing
 
             entropy_context = self.calc_entropy_params(anchor)
 
@@ -635,7 +635,7 @@ class HAC(GaussianModel, nn.Module):
             retain_grad = (step < opt.update_until and step >= 0)
         else:
             retain_grad = False
-        # TODO: 检查实际效果
+        # TODO: Check actual effectiveness
         if retain_grad:
             try:
                 screenspace_points.retain_grad()
@@ -1667,7 +1667,7 @@ class HAC(GaussianModel, nn.Module):
 
         bs =  _quantized_v.tobytes()
         # byte_stream = io.BytesIO()
-        # # 使用numpy.save将数组保存到BytesIO对象中
+        # # Use numpy.save to save array to BytesIO object
         # np.savez_compressed(byte_stream, _quantized_v)
         # bs = byte_stream.getvalue()
 

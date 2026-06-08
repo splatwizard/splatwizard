@@ -6,7 +6,7 @@ from splatwizard.config import OptimizationParams, ModelParams
 
 @dataclass
 class HACModelParams(ModelParams):
-    # 基本参数
+    # Basic parameters
     sh_degree: int = 3
     feat_dim: int = 50
     n_offsets: int = 10
@@ -25,7 +25,7 @@ class HACModelParams(ModelParams):
     Q: float = 1
     use_2D: bool = True
 
-    # 特征和路径参数
+    # Feature and path parameters
     use_feat_bank: bool = False
 
     resolutions_list: Tuple[int] = (18, 24, 33, 44, 59, 80, 108, 148, 201, 275, 376, 514)
@@ -58,59 +58,59 @@ class HACOptimizationParams(OptimizationParams):
     mask_lr_delay_mult: float = 0.01
     mask_lr_max_steps: int = 30_000
 
-    # 基本学习率参数
+    # Basic learning rate parameters
     feature_lr: float = 0.0075
     opacity_lr: float = 0.02
     scaling_lr: float = 0.007
     rotation_lr: float = 0.002
 
-    # MLP不透明度参数
+    # MLP opacity parameters
     mlp_opacity_lr_init: float = 0.002
     mlp_opacity_lr_final: float = 0.00002
     mlp_opacity_lr_delay_mult: float = 0.01
     mlp_opacity_lr_max_steps: int = 30_000
 
-    # MLP协方差参数
+    # MLP covariance parameters
     mlp_cov_lr_init: float = 0.004
     mlp_cov_lr_final: float = 0.004
     mlp_cov_lr_delay_mult: float = 0.01
     mlp_cov_lr_max_steps: int = 30_000
 
-    # MLP颜色参数
+    # MLP color parameters
     mlp_color_lr_init: float = 0.008
     mlp_color_lr_final: float = 0.00005
     mlp_color_lr_delay_mult: float = 0.01
     mlp_color_lr_max_steps: int = 30_000
 
-    # MLP特征库参数
+    # MLP feature bank parameters
     mlp_featurebank_lr_init: float = 0.01
     mlp_featurebank_lr_final: float = 0.00001
     mlp_featurebank_lr_delay_mult: float = 0.01
     mlp_featurebank_lr_max_steps: int = 30_000
 
-    # 编码参数
+    # Encoding parameters
     encoding_xyz_lr_init: float = 0.005
     encoding_xyz_lr_final: float = 0.00001
     encoding_xyz_lr_delay_mult: float = 0.33
     encoding_xyz_lr_max_steps: int = 30_000
 
-    # MLP网格参数
+    # MLP grid parameters
     mlp_grid_lr_init: float = 0.005
     mlp_grid_lr_final: float = 0.00001
     mlp_grid_lr_delay_mult: float = 0.01
     mlp_grid_lr_max_steps: int = 30_000
 
-    # MLP变形参数
+    # MLP deformation parameters
     mlp_deform_lr_init: float = 0.005
     mlp_deform_lr_final: float = 0.0005
     mlp_deform_lr_delay_mult: float = 0.01
     mlp_deform_lr_max_steps: int = 30_000
 
-    # 其他优化参数
+    # Other optimization parameters
     percent_dense: float = 0.01
     lambda_dssim: float = 0.2
 
-    # 锚点密集化参数
+    # Anchor densification parameters
     start_stat: int = 500
     update_from: int = 1500
     update_interval: int = 100

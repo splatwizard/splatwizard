@@ -20,7 +20,7 @@ from splatwizard.utils.misc import safe_state
 
 
 def setup_output_dir(pp: PipelineParams, train_context: TrainContext, stage: Enum=None):
-    # 创建输出目录
+    # Create output directory
 
     if pp.output_dir is None:
         return
@@ -36,7 +36,7 @@ def setup_output_dir(pp: PipelineParams, train_context: TrainContext, stage: Enu
     # if pp.env_path is not None:
     #     os.environ["PATH"] = pp.env_path + ':' + os.environ["PATH"]
 
-    # 初始化日志文件
+    # Initialize log file
     logger.add(train_context.output_dir / 'output.log')
     # logger.info(f'running tag: {args.tag}')
 
@@ -89,7 +89,7 @@ def main(sys_argv, prog=None):
     train_context.model = args.subgroups['model_group.model']
 
     if pp.output_dir is not None:
-        # 创建输出目录
+        # Create output directory
         train_context.base_output_dir = pathlib.Path(pp.output_dir)
         train_context.base_output_dir.mkdir(exist_ok=True, parents=True)
 

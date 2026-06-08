@@ -22,20 +22,8 @@ def evaluate(
         scene: Scene,
         ppl_context: TrainContext=None):
 
-    # if tb_writer:
-    #     tb_writer.add_scalar(f'{dataset_name}/train_loss_patches/l1_loss', Ll1.item(), iteration)
-    #     tb_writer.add_scalar(f'{dataset_name}/train_loss_patches/total_loss', loss.item(), iteration)
-    #     tb_writer.add_scalar(f'{dataset_name}/iter_time', elapsed, iteration)
-    #
-    # if wandb is not None:
-    #     wandb.log({"train_l1_loss":Ll1, 'train_total_loss':loss, })
-    # # Report test and samples of training set
-    # if iteration in testing_iterations:
-    # print('start evaluation')
     gs_model.eval()
 
-    # validation_configs = ({'name': 'test', 'cameras' : scene.getTestCameras()},
-    #                               {'name': 'train', 'cameras' : [scene.getTrainCameras()[idx % len(scene.getTrainCameras())] for idx in range(5, 30, 5)]})
 
     bg_color = [1, 1, 1] if ppl.white_background else [0, 0, 0]
     background = torch.tensor(bg_color, dtype=torch.float32, device=ppl.device)
@@ -50,14 +38,6 @@ def evaluate(
     peak_memory_allocated = 0
     peak_memory_reserved = 0
 
-    # if ppl.ref_ply_path is not None:
-    #     ref_ply = fetchPly(ppl.ref_ply_path)
-    #     model_points = np.array(gs_model.xyz.detach().cpu().numpy(), order='C')
-    #     check_tensor(torch.Tensor(model_points))
-    #     ref_points = np.array(ref_ply.points, order='C')
-    #     check_tensor(torch.Tensor(ref_points))
-    #     chamfer_dist = pcu.chamfer_distance(model_points, ref_points, p_norm=1)
-    #     print('chamfer distance:', chamfer_dist)
 
 
     cameras = scene.getTestCameras()
@@ -67,12 +47,6 @@ def evaluate(
         viewpoint = next(cameras)
         render_result = gs_model.render(viewpoint, background, ppl)
 
-        # for idx, viewpoint in enumerate(cameras):
-        #     render_result = gs_model.render(viewpoint, background, ppl)
-        # print("[DEBUG] Rendered image mean:", render_result.rendered_image.mean().item())
-        # plt.imshow(render_result.rendered_image.permute(1, 2, 0).cpu().detach().numpy())
-        # plt.show()
-        # exit()
         cameras.reset()
 
     try:

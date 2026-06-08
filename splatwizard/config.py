@@ -35,30 +35,6 @@ class CullingMode(Enum):
 class ModelParams:
     require_cam_infos: bool = False
 
-    # 基本参数
-    # sh_degree: int = 3
-    # feat_dim: int = 50
-    # n_offsets: int = 10
-    # voxel_size: float = 0.001  # if voxel_size<=0, using 1nn dist
-    # update_depth: int = 3
-    # update_init_factor: int = 16
-    # update_hierachy_factor: int = 4
-    #
-    # # 特征和路径参数
-    # use_feat_bank: bool = False
-    # source_path: str = ""
-    # model_path: str = ""
-    # images: str = "images"
-    # resolution: int = -1
-    # white_background: bool = False
-    # data_device: str = "cuda"
-    # eval: bool = True
-    # lod: int = 0
-
-    # def __post_init__(self):
-    #     if self.source_path:
-    #         self.source_path = os.path.abspath(self.source_path)
-
 @dataclass
 class DatasetParams:
     # Path to the root directory of the dataset
@@ -66,13 +42,13 @@ class DatasetParams:
     # Path to the PLY file containing point cloud data (optional)
     ply_data_path: str = None
 
-    # Mask dir, you can use outer mask files instead of alpha channel in original image
+    # Mask directory, can use external mask files instead of alpha channel in original image
     mask_dir: str = None
-    # Reference ply file, for evaluating chamfer distance
+    # Reference PLY file for evaluating chamfer distance
     ref_ply_path: str = None
     # ObsMask file
     obs_mask_path: str = None
-    # plane file
+    # Plane file
     plane_path: str = None
     mask_background: bool = True
 
@@ -83,7 +59,7 @@ class DatasetParams:
     dataset: str = None
     # Sample every Nth view for testing
     test_sample_freq: int = 8
-    # lod value for DataMode.SPLIT_LOD, common for BungeeNerf dataset
+    # LOD value for DataMode.SPLIT_LOD, common for BungeeNerf dataset
     lod: int = 30
     # Dataset partitioning strategy (SPLIT/FULL)
     data_mode: DataMode = DataMode.SPLIT
@@ -96,7 +72,7 @@ class OutputParams:
 
     # Iteration numbers to save model checkpoints
     checkpoint_iterations: List[int] = field(default_factory=list)
-    #  Path to load a pre-trained model checkpoint
+    # Path to load a pre-trained model checkpoint
     checkpoint: str = None
     # File format for checkpoints (pth/ply)
     checkpoint_type: str = 'pth'
@@ -106,6 +82,8 @@ class OutputParams:
     bitstream: str = None
     # File format for checkpoint at the end of training. Both pth and ply checkpoint will be saved by default
     final_checkpoint: str = ('pth', 'ply')
+
+
 
 
 
@@ -124,7 +102,7 @@ class PipelineParams(OutputParams, DatasetParams):
 
     # Target resolution for processing (-1 for auto rescaling to smaller than 1.6K)
     resolution: int = -1
-    # Whether to background as pure white during rendering
+    # Whether to render background as pure white
     white_background: bool = False
     # Device for data loading ('cuda' or 'cpu')
     data_device: str = "cuda"
@@ -144,7 +122,7 @@ class PipelineParams(OutputParams, DatasetParams):
     # Perform warmup iterations before evaluation for more accurate FPS
     eval_warmup: bool = True
 
-    # save rendered image
+    # Save rendered images
     save_rendered_image: bool = False
 
 
@@ -187,7 +165,7 @@ class OptimizationParams:
 
     # Whether to use camera dependent task
     camera_dependent_task: bool = True
-    # Some camera dependent task only require cam intrinsic
+    # Some camera dependent tasks only require camera intrinsics
     camera_dependent_task_require_images: bool = False
 
 
@@ -214,7 +192,7 @@ class MeshExtractorParams:
     unbounded: bool = False
     # Mesh: resolution for unbounded mesh extraction
     mesh_res: int = 1024
-    # Shrinkage factor during culling, larger than 1 means to shrink the reconstruct point cloud / mesh
+    # Shrinkage factor during culling, larger than 1 means to shrink the reconstructed point cloud / mesh
     shrink_factor: float = 1.0
     # Used in evaluation of chamfer distance
     downsample_density: float =0.2
@@ -225,6 +203,3 @@ class MeshExtractorParams:
     recon_eval_mode: ReconEvalMode = ReconEvalMode.MESH
     skip_culling: bool = False
     culling_mode: CullingMode = CullingMode.VIEW_KEEP
-
-
-

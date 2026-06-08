@@ -263,11 +263,7 @@ class TriPlaneField(nn.Module):
 
     def get_density(self, pts: torch.Tensor, timestamps: Optional[torch.Tensor] = None, itr=-1):
         """Computes and returns the densities."""
-        # if itr==-1:
-        #     print('iter=-1')
         grids_hat = self.grids
-        # if itr != 4:
-        #     print(itr)
         if itr > self.init_itr or itr == -1:
             grids_hat = []
             sent_latent = []
@@ -324,7 +320,6 @@ class TriPlaneField(nn.Module):
         else:
             pts = normalize_aabb(pts, self.aabb)
 
-        # pts = torch.cat((pts, timestamps), dim=-1)  # [n_rays, n_samples, 4]
 
         pts = pts.reshape(-1, pts.shape[-1])
         if itr > 13000 or itr == -1:
@@ -360,11 +355,7 @@ class TriPlaneField(nn.Module):
 
     def save_latent(self, save_path, itr):
         """Computes and returns the densities."""
-        # if itr==-1:
-        #     print('iter=-1')
         grids_hat = self.grids
-        # if itr != 4:
-        #     print(itr)
         if 1:
             grids_hat = []
             sent_latent = []
@@ -375,17 +366,6 @@ class TriPlaneField(nn.Module):
                 ii = 0
                 for latent in cur_latent:
                     quant_step = 2 ** 4
-                    # quant_latent = self.quantizer.apply(
-                    # latent * quant_step, # Apply Q. step
-                    # False                                           # Noise if needed
-                    # )
-                    # if ii==0:
-                    #     sent_latent.append(quant_latent)
-                    # elif ii==1:
-                    #     sent_latent2.append(quant_latent)
-                    # elif ii==2:
-                    #     sent_latent3.append(quant_latent)
-                    # ii = ii + 1
                     round_latent = self.ste_quantizer.apply(
                         latent * quant_step,  # Apply Q. step
                         False  # Noise if needed
@@ -434,12 +414,6 @@ class TriPlaneField(nn.Module):
 
         self.non_zero_pixel_ctx_index = self.non_zero_pixel_ctx_index
 
-        # ====================== Get sent latent codes ====================== #
-        # Two different types of quantization. quantize() function uses the usual
-        # noise addition proxy if self.training is True and the actual round
-        # otherwise.
-        # if use_ste_quant the straight-through estimator is used i.e. actual
-        # quantization in the forward pass and gradient set to one in the backward.
         quantizer = self.ste_quantizer if use_ste_quant else self.quantizer
         sent_latent = []
         sent_latent2 = []
@@ -512,12 +486,6 @@ class TriPlaneField(nn.Module):
             scales = []
             latents = []
 
-            # for i in range(len(sent_latent)):
-            #     _, flat_mu_y, flat_scale_y = compute_rate(flat_latents[i], raw_proba_params[i])
-            #     # print(flat_mu_y.size(), flat_scale_y.size())
-            #     mu = []
-            #     scale = []
-            #     latent = []
 
             #     # "Pointer" for the reading of the 1D scale, mu and rate
             #     cnt = 0
@@ -615,12 +583,6 @@ class TriPlaneField(nn.Module):
                 scales2.append(scale)
                 latents2.append(latent)
 
-            # for i in range(len(sent_latent2)):
-            #     _, flat_mu_y, flat_scale_y = compute_rate(flat_latents[i], raw_proba_params[i])
-            #     # print(flat_mu_y.size(), flat_scale_y.size())
-            #     mu = []
-            #     scale = []
-            #     latent = []
 
             #     # "Pointer" for the reading of the 1D scale, mu and rate
             #     cnt = 0
@@ -697,12 +659,6 @@ class TriPlaneField(nn.Module):
                 scales3.append(scale)
                 latents3.append(latent)
 
-            # for i in range(len(sent_latent3)):
-            #     _, flat_mu_y, flat_scale_y = compute_rate(flat_latents[i], raw_proba_params[i])
-            #     # print(flat_mu_y.size(), flat_scale_y.size())
-            #     mu = []
-            #     scale = []
-            #     latent = []
 
             #     # "Pointer" for the reading of the 1D scale, mu and rate
             #     cnt = 0

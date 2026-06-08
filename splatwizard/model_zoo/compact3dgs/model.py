@@ -98,7 +98,7 @@ class CompactGSModel(DensificationAndPruneMixin, GaussianModel):
             )
 
         self.prune_recolor = model_param.prune_recolor
-        # TODO 如何区别Eval和Training的初始化
+        # TODO How to distinguish between Eval and Training initialization
         self.mode = GenerateMode.EVALUATION 
         # self.mode = GenerateMode.TRAINING_WITH_RVQ
         self.compress_type = CompressType.PP

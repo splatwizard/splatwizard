@@ -10,7 +10,6 @@ from splatwizard.compression.quantizer import STE_binary, STE_multistep
 from splatwizard._cmod.gridencoder.grid import _backend
 
 
-# from compressgs.cuda_modules.gridencoder import GridEncoder
 
 
 class _grid_encode(Function):
@@ -22,8 +21,6 @@ class _grid_encode(Function):
         # offsets_list: [n_levels + 1], int
         # RETURN: [N, F], float
         inputs = inputs.contiguous()
-        # embeddings_mask = torch.ones(size=[embeddings.shape[0]], dtype=torch.bool, device='cuda')
-        # print('kkkkkkkkkk---000000000:', embeddings_mask.shape, embeddings.shape, embeddings_mask.sum())
 
         Rb = 128
         if binary_vxl is not None:
@@ -32,22 +29,17 @@ class _grid_encode(Function):
             assert len(binary_vxl.shape) == inputs.shape[-1]
 
         N, num_dim = inputs.shape # batch size, coord dim # N_rays, 3
-        n_levels = offsets_list.shape[0] - 1 # level # 层数=16
-        n_features = embeddings.shape[1] # embedding dim for each level # 就是channel数=2
+        n_levels = offsets_list.shape[0] - 1 # level # num_levels=16
+        n_features = embeddings.shape[1] # embedding dim for each level # channel count=2
 
         max_level_id = min_level_id + n_levels_calc
 
-        # manually handle autocast (only use half precision embeddings, inputs must be float for enough precision)
-        # if n_features % 2 != 0, force float, since half for atomicAdd is very slow.
         if torch.is_autocast_enabled() and n_features % 2 == 0:
             embeddings = embeddings.to(torch.half)
 
         # n_levels first, optimize cache for cuda kernel, but needs an extra permute later
-        outputs = torch.empty(n_levels_calc, N, n_features, device=inputs.device, dtype=embeddings.dtype)  # 创建一个buffer给cuda填充
-        # outputs = [hash层数=16, N_rays, channels=2]
+        outputs = torch.empty(n_levels_calc, N, n_features, device=inputs.device, dtype=embeddings.dtype)  # create a buffer for cuda filling
 
-        # zero init if we only calculate partial levels
-        # if n_levels_calc < n_levels: outputs.zero_()
         if calc_grad_inputs:  # inputs.requires_grad
             dy_dx = torch.empty(N, n_levels_calc * num_dim * n_features, device=inputs.device, dtype=embeddings.dtype)
         else:
@@ -83,16 +75,15 @@ class _grid_encode(Function):
                 min_level_id
                 )
 
-        # permute back to [N, n_levels * n_features]  # [N_rays, hash层数=16 * channels=2]
+        # permute back to [N, n_levels * n_features]  # [N_rays, hash_levels=16 * channels=2]
         outputs = outputs.permute(1, 0, 2).reshape(N, n_levels_calc * n_features)
 
         ctx.save_for_backward(inputs, embeddings, offsets_list, resolutions_list, dy_dx, binary_vxl)
-        ctx.dims = [N, num_dim, n_features, n_levels_calc, min_level_id, max_level_id, Rb, PV]  # min_level_id是否要单独save为tensor
+        ctx.dims = [N, num_dim, n_features, n_levels_calc, min_level_id, max_level_id, Rb, PV]  # whether min_level_id should be saved as a separate tensor
 
         return outputs
 
     @staticmethod
-    #@once_differentiable
     @custom_bwd
     def backward(ctx, grad):
 
@@ -206,8 +197,6 @@ class EntropyGridEncoder(nn.Module):
         return f"GridEncoder: num_dim={self.num_dim} n_levels={self.n_levels} n_features={self.n_features} resolution={self.base_resolution} -> {int(round(self.base_resolution * self.per_level_scale ** (self.n_levels - 1)))} per_level_scale={self.per_level_scale:.4f} params={tuple(self.params.shape)} gridtype={self.gridtype} align_corners={self.align_corners} interpolation={self.interpolation}"
 
     def forward(self, inputs, min_level_id=None, max_level_id=None, test_phase=False, outspace_params=None, binary_vxl=None, PV=0):
-        # inputs: [..., num_dim], normalized real world positions in [0, 1]
-        # return: [..., n_levels * n_features]
 
         prefix_shape = list(inputs.shape[:-1])
         inputs = inputs.view(-1, self.num_dim)
@@ -219,14 +208,12 @@ class EntropyGridEncoder(nn.Module):
 
         if self.ste_binary:
             embeddings = STE_binary.apply(params)
-            # embeddings = params
         elif (self.add_noise and not test_phase):
             embeddings = params + (torch.rand_like(params) - 0.5) * (1 / self.Q)
         elif (self.ste_multistep) or (self.add_noise and test_phase):
             embeddings = STE_multistep.apply(params, self.Q)
         else:
             embeddings = params
-        # embeddings = embeddings * 0  # for ablation
 
         min_level_id = 0 if min_level_id is None else max(min_level_id, 0)
         max_level_id = self.n_levels if max_level_id is None else min(max_level_id, self.n_levels)

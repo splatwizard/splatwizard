@@ -4,14 +4,12 @@ from torch.distributions import Uniform
 
 anchor_round_digits = 16
 Q_anchor = 1/(2 ** anchor_round_digits - 1)
-# use_clamp = True
 use_multiprocessor = False  # Always False plz. Not yet implemented for True.
 
 
 class UniverseQuant(torch.autograd.Function):
     @staticmethod
     def forward(ctx, x):
-        #b = np.random.uniform(-1,1)
         b = 0
         uniform_distribution = Uniform(-0.5*torch.ones(x.size())
                                        * (2**b), 0.5*torch.ones(x.size())*(2**b)).sample().cuda()
@@ -66,15 +64,6 @@ class STEQuantizerFunc(torch.autograd.Function):
         x, = ctx.saved_tensors
         return grad_out, None  # No gradient with respect to <training> variable
 
-# class STE_multistep(torch.autograd.Function):
-#     @staticmethod
-#     def forward(ctx, input, Q, input_mean=None):
-#         Q_round = torch.round(input / Q)
-#         Q_q = Q_round * Q
-#         return Q_q
-#     @staticmethod
-#     def backward(ctx, grad_output):
-#         return grad_output, None
 
 
 class STE_binary(torch.autograd.Function):
@@ -82,7 +71,6 @@ class STE_binary(torch.autograd.Function):
     def forward(ctx, input):
         ctx.save_for_backward(input)
         input = torch.clamp(input, min=-1, max=1)
-        # out = torch.sign(input)
         p = (input >= 0) * (+1.0)
         n = (input < 0) * (-1.0)
         out = p + n
@@ -124,13 +112,7 @@ class STE_multistep(torch.autograd.Function):
 class Quantize_anchor(torch.autograd.Function):
     @staticmethod
     def forward(ctx, anchors, min_v, max_v):
-        # if anchor_round_digits == 32:
-            # return anchors
-        # min_v = torch.min(anchors).detach()
-        # max_v = torch.max(anchors).detach()
-        # scales = 2 ** anchor_round_digits - 1
         interval = ((max_v - min_v) * Q_anchor + 1e-6)  # avoid 0, if max_v == min_v
-        # quantized_v = (anchors - min_v) // interval
         quantized_v = torch.div(anchors - min_v, interval, rounding_mode='floor')
         quantized_v = torch.clamp(quantized_v, 0, 2 ** anchor_round_digits - 1)
         anchors_q = quantized_v * interval + min_v

@@ -201,7 +201,7 @@ class ControlGS(RenderMixin, DensificationAndPruneMixin, GaussianModel):
         self._scaling = optimizable_tensors["scaling"]
         self._rotation = optimizable_tensors["rotation"]
 
-        self._split_count = self._split_count[valid_points_mask]  # 同步更新分裂计数
+        self._split_count = self._split_count[valid_points_mask]  # Synchronously update split count
         if self._split_count.nelement() > 0:
             self._min_split_count = self._split_count.min()
 

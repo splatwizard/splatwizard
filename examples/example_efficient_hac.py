@@ -94,7 +94,7 @@ class EfficientHAC(HAC):
             retain_grad = (step < opt.update_until and step >= 0)
         else:
             retain_grad = False
-        # TODO: 检查实际效果
+        # TODO: Check actual effectiveness
         if retain_grad:
             try:
                 screenspace_points.retain_grad()

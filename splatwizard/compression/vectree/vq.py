@@ -427,7 +427,7 @@ class VectorQuantize(nn.Module):
 
         if self.training:
             if self.commitment_weight > 0:
-                commit_loss = F.mse_loss(quantize.detach(), x)  # 对应VQRF公式(8)
+                commit_loss = F.mse_loss(quantize.detach(), x)  # Corresponding to VQRF formula (8)
                 loss = loss + commit_loss * self.commitment_weight
 
             if self.orthogonal_reg_weight > 0:  # jump

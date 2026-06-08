@@ -199,10 +199,10 @@ def quantize_tensor(x, scale, zero_point, num_bits=8, signed=False):
 
 
 def safe_euler(euler):
-    # 把 NaN 转为 0，但保持 requires_grad
+    # Convert NaN to 0 while preserving requires_grad
     euler = torch.where(torch.isnan(euler), torch.zeros_like(euler), euler)
 
-    # 限制角度范围，防止 sin/cos 溢出造成 inf
+    # Limit angle range to prevent sin/cos overflow causing inf
     euler = torch.clamp(euler, min=-1e6, max=1e6)
     return euler
 

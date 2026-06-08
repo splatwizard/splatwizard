@@ -59,7 +59,6 @@ def kmeans(
                 dists = b @ rearrange(means, 'h n d -> h d n')
             else:
                 dists = -patched_dist(b, means, patch_size)
-                # dists = -torch.cdist(samples, means, p = 2, compute_mode='use_mm_for_euclid_dist_if_necessary')
 
             buckets.append(torch.argmax(dists, dim = -1))
         buckets = torch.cat(buckets, dim=1)

@@ -1344,21 +1344,21 @@ class ALSQPlus(Function):
         weight, alpha, beta = ctx.saved_tensors
         g, Qn, Qp = ctx.other
         q_w = (weight - beta) / alpha
-        smaller = (q_w < Qn).float() #bool值转浮点值，1.0或者0.0
-        bigger = (q_w > Qp).float() #bool值转浮点值，1.0或者0.0
-        between = 1.0 - smaller -bigger #得到位于量化区间的index
+        smaller = (q_w < Qn).float() #Convert bool to float, 1.0 or 0.0
+        bigger = (q_w > Qp).float() #Convert bool to float, 1.0 or 0.0
+        between = 1.0 - smaller -bigger #Get indices within quantization range
         grad_alpha = ((smaller * Qn + bigger * Qp + 
             between * Round.apply(q_w) - between * q_w)*grad_weight * g).sum().unsqueeze(dim=0)
         grad_beta = ((smaller + bigger) * grad_weight * g).sum().unsqueeze(dim=0)
-        #在量化区间之外的值都是常数，故导数也是0
+        #Values outside quantization range are constant, so derivative is 0
         grad_weight = between * grad_weight
-        #返回的梯度要和forward的参数对应起来
+        #Returned gradients must correspond to forward parameters
         return grad_weight, grad_alpha,  None, None, None, grad_beta
 
 
 class LSQPlusActivationQuantizer(nn.Module):
     def __init__(self, a_bits, all_positive=False,batch_init = 20):
-        #activations 没有per-channel这个选项的
+        #Activations don't have per-channel option
         super(LSQPlusActivationQuantizer, self).__init__()
         self.a_bits = a_bits
         self.all_positive = all_positive
@@ -1376,7 +1376,7 @@ class LSQPlusActivationQuantizer(nn.Module):
         self.beta = torch.nn.Parameter(torch.tensor([float(-1e-9)]), requires_grad=True)
         self.init_state = 0
 
-    # 量化/反量化
+    # Quantization/dequantization
     def forward(self, activation):
         #V1
         # print(self.a_bits, self.batch_init)

@@ -85,18 +85,9 @@ def setup_tensorboard(output_dir):
         logger.info("not found tf board")
 
 
-    # if not pipe.model_path:
-    #     if os.getenv('OAR_JOB_ID'):
-    #         unique_str=os.getenv('OAR_JOB_ID')
-    #     else:
-    #         unique_str = str(uuid.uuid4())
-    #     pipe.model_path = os.path.join("./output/", unique_str[0:10])
 
     # Set up output folder
     logger.info(wrap_str("Tensorboard output folder:", output_dir))
-    # os.makedirs(pipe.model_path, exist_ok = True)
-    # with open(os.path.join(pipe.model_path, "cfg_args"), 'w') as cfg_log_f:
-    #     cfg_log_f.write(str(Namespace(**vars(args))))
 
     # Create Tensorboard writer
     tb_writer = None

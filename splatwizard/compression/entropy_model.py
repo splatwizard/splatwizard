@@ -97,7 +97,6 @@ class EntropyBernoulli(nn.Module):
     def __init__(self):
         super().__init__()
     def forward(self, x, p):
-        # p = torch.sigmoid(p)
         p = torch.clamp(p, min=1e-6, max=1 - 1e-6)
         pos_mask = (1 + x) / 2.0  # 1 -> 1, -1 -> 0
         neg_mask = (1 - x) / 2.0  # -1 -> 1, 1 -> 0

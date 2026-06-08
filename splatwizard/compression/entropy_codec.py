@@ -6,34 +6,7 @@ from splatwizard._cmod import arithmetic
 
 chunk_size_cuda = 10000
 
-# class STE_multistep(torch.autograd.Function):
-#     @staticmethod
-#     def forward(ctx, input, Q, input_mean=None):
-#         Q_round = torch.round(input / Q)
-#         Q_q = Q_round * Q
-#         return Q_q
-#     @staticmethod
-#     def backward(ctx, grad_output):
-#         return grad_output, None
 
-# def get_binary_vxl_size(binary_vxl):
-#     # binary_vxl: {0, 1}
-#     # assert torch.unique(binary_vxl).mean() == 0.5
-#     ttl_num = binary_vxl.numel()
-#
-#     pos_num = torch.sum(binary_vxl)
-#     neg_num = ttl_num - pos_num
-#
-#     Pg = pos_num / ttl_num  #  + 1e-6
-#     Pg = torch.clamp(Pg, min=1e-6, max=1-1e-6)
-#     pos_prob = Pg
-#     neg_prob = (1 - Pg)
-#     pos_bit = pos_num * (-torch.log2(pos_prob))
-#     neg_bit = neg_num * (-torch.log2(neg_prob))
-#     ttl_bit = pos_bit + neg_bit
-#     ttl_bit += 32  # Pg
-#     # print('binary_vxl:', Pg.item(), ttl_bit.item(), ttl_num, pos_num.item(), neg_num.item())
-#     return Pg, ttl_bit, ttl_bit.item()/8.0/1024/1024, ttl_num
 
 
 def encoder_factorized_chunk(x, lower_func, Q:float = 1, file_name='tmp.b', chunk_size=1000_0000):
@@ -370,13 +343,6 @@ def encoder_gaussian(x, mean, scale, Q, file_name='tmp.b'):
 
 
 
-    # with open(file_name, 'wb') as fout:
-    #     fout.write(min_value.to(torch.float32).cpu().numpy().tobytes())
-    #     fout.write(max_value.to(torch.float32).cpu().numpy().tobytes())
-    #     fout.write(np.array([len_cnt_bytes]).astype(np.int32).tobytes())
-    #     fout.write(cnt_bytes)
-    #     fout.write(byte_stream_bytes)
-    # bit_len = (len(byte_stream_bytes) + len(cnt_bytes))*8 + 32 * 3
 
     fout = BytesIO()
     fout.write(min_value.to(torch.float32).cpu().numpy().tobytes())
@@ -614,12 +580,6 @@ class ArithmeticCodec:
         cnt_bytes = cnt_torch.cpu().numpy().tobytes()
         byte_stream_bytes = byte_stream_torch.cpu().numpy().tobytes()
         len_cnt_bytes = len(cnt_bytes)
-        # with open(file_name, 'wb') as fout:
-        #     fout.write(prob_1.to(torch.float32).cpu().numpy().tobytes())
-        #     fout.write(np.array([len_cnt_bytes]).astype(np.int32).tobytes())
-        #     fout.write(cnt_bytes)
-        #     fout.write(byte_stream_bytes)
-        # bit_len = (len(byte_stream_bytes) + len(cnt_bytes)) * 8 + 32 * 2
 
         fout = BytesIO()
         fout.write(prob_1.to(torch.float32).cpu().numpy().tobytes())

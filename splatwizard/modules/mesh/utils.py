@@ -1,7 +1,6 @@
 import tempfile
 
 import numpy as np
-# import imageio
 import skimage
 import cv2
 import torch
@@ -21,15 +20,6 @@ def get_psnr(img1, img2, normalize_rgb=False):
     return psnr
 
 
-# def load_rgb(path, normalize_rgb = False):
-#     img = imageio.imread(path)
-#     img = skimage.img_as_float32(img)
-#
-#     if normalize_rgb: # [-1,1] --> [0,1]
-#         img -= 0.5
-#         img *= 2.
-#     img = img.transpose(2, 0, 1)
-#     return img
 
 
 def load_K_Rt_from_P(filename, P=None):
